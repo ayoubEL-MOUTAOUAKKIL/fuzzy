@@ -11,6 +11,7 @@ namespace core {
 		BinaryExpressionModel(BinaryExpression<T>*, Expression<T>*,Expression<T>*);
 		virtual ~BinaryExpressionModel() = default;
 		T evaluate() const;
+		BinaryExpression<T>* getOperat()const;
 		T evaluate(Expression<T>*,Expression<T>*) const;
 
 	private:
@@ -32,6 +33,12 @@ namespace core {
 		if (l != nullptr && r !=nullptr) {
 			return evaluate(l,r);
 		}
+	}
+
+	template<typename T>
+	inline BinaryExpression<T>* BinaryExpressionModel<T>::getOperat() const
+	{
+		return operat;
 	}
 
 	template<typename T>

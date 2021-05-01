@@ -12,6 +12,7 @@
 
 #include "../fuzzy/CogDefuzz.h"
 #include "../fuzzy/SugenoConclusion.h"
+#include "../fuzzy/SugenoDefuzz.h"
 #include "../core/evaluator.h"
 #include "../fuzzy/or.h"
 #include "../fuzzy/and.h"
@@ -410,6 +411,7 @@ void testSugeno() {
 	e.push_back(r);
 	e.push_back(r2);
 	fuzzy::SugenoConclusion<NUMERIC> a(v);
+	fuzzy::sugenoDefuzz<NUMERIC> ab();
 
 }
 
