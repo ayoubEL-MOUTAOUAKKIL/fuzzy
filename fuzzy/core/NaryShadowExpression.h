@@ -39,8 +39,4 @@ namespace core {
 		target(_t);
 	}
 }
-
-
-
-
 #endif

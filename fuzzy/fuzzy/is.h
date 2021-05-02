@@ -55,16 +55,13 @@ namespace fuzzy {
 		const T ev = _e1->evaluate();
 
 		if ((ev < min) || (ev > max)) {
-			//std::cout << std::endl << "-->return:" << 0;
 			return 0;
 		}
 
 		if (ev <= mid) {
-			//std::cout << std::endl << "-->return2:" << (ev - min) / (mid - min);
 			return (ev - min) / (mid - min);
 		}
 
-		//std::cout << std::endl << "-->return3:" << (max - ev) / (max - mid);
 		return (max - ev) / (max - mid);
 	}
 

@@ -5,7 +5,6 @@
 #include "../core/expression.h"
 namespace fuzzy {
 
-
 	template<typename T>
 	class Then :public core::BinaryExpression<T> {
 	};
@@ -18,10 +17,6 @@ namespace fuzzy {
 
 	template<typename T>
 	T ThenMin<T>::evaluate(core::Expression<T>* _e1, core::Expression<T>* _e2)const{
-		/*std::cout << std::endl << "-->thenMin";
-		std::cout << std::endl << "-->1: " << _e1->evaluate();
-		std::cout << std::endl << "-->2: " << _e2->evaluate();
-		std::cout << std::endl << "-->result: " << fmin(_e1->evaluate(), _e2->evaluate());*/
 		return fmin(_e1->evaluate(), _e2->evaluate());
 	}
 
@@ -56,7 +51,4 @@ namespace fuzzy {
 		return premiseVal;
 	}
 }
-
-
-
 #endif

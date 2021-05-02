@@ -146,24 +146,24 @@
   <ItemGroup>
     <ClInclude Include="core\BinaryExpressionModel.h" />
     <ClInclude Include="core\BinaryShadowExpression.h" />
-    <ClInclude Include="core\evaluator.h" />
-    <ClInclude Include="core\expression.h" />
-    <ClInclude Include="core\factory.h" />
+    <ClInclude Include="core\Evaluator.h" />
+    <ClInclude Include="core\Expression.h" />
+    <ClInclude Include="core\Factory.h" />
     <ClInclude Include="core\NaryExpressionModel.h" />
     <ClInclude Include="core\NaryShadowExpression.h" />
     <ClInclude Include="core\UnaryExpressionModel.h" />
     <ClInclude Include="core\UnaryShadowExpression.h" />
-    <ClInclude Include="core\valueModel.h" />
-    <ClInclude Include="fuzzy\agg.h" />
-    <ClInclude Include="fuzzy\and.h" />
+    <ClInclude Include="core\ValueModel.h" />
+    <ClInclude Include="fuzzy\Agg.h" />
+    <ClInclude Include="fuzzy\And.h" />
     <ClInclude Include="fuzzy\CogDefuzz.h" />
-    <ClInclude Include="fuzzy\fuzzyfactory.h" />
-    <ClInclude Include="fuzzy\is.h" />
+    <ClInclude Include="fuzzy\Fuzzyfactory.h" />
+    <ClInclude Include="fuzzy\Is.h" />
     <ClInclude Include="fuzzy\MandaniDefuzz.h" />
-    <ClInclude Include="fuzzy\not.h" />
+    <ClInclude Include="fuzzy\Not.h" />
     <ClInclude Include="fuzzy\SugenoConclusion.h" />
     <ClInclude Include="fuzzy\SugenoDefuzz.h" />
-    <ClInclude Include="fuzzy\then.h" />
+    <ClInclude Include="fuzzy\Then.h" />
     <ClInclude Include="tests\tests.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

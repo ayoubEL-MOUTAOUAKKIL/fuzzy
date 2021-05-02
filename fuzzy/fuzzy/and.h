@@ -10,8 +10,6 @@ namespace fuzzy {
 	class And:public core::BinaryExpression<T> {
 	};
 
-
-
 	template <typename T>
 	class AndMin :public And<T> {
 	public:
@@ -34,10 +32,4 @@ namespace fuzzy {
 		return _e1->evaluate() * _e2->evaluate();
 	}
 }
-
-
-
-
-
-
 #endif
