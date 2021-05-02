@@ -31,9 +31,6 @@ namespace fuzzy {
 	T OrMax<T>::evaluate(core::Expression<T>* _e1, core::Expression<T>* _e2)const {
 		return fmax(_e1->evaluate(), _e2->evaluate());
 	}
-
-
-
 }
 
 

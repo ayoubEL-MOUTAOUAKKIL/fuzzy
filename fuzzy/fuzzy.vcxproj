@@ -139,7 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="fuzzy\or.h" />
+    <ClCompile Include="fuzzy\Or.h" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="tests\tests.cpp" />
   </ItemGroup>
