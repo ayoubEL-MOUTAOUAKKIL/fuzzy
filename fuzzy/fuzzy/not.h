@@ -5,7 +5,6 @@
 namespace fuzzy {
 	template<typename T>
 	class Not : public core::UnaryExpression<T> {
-
 	};
 
 	template<typename T>

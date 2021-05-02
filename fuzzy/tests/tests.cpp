@@ -434,7 +434,6 @@ void tests()
 	testIsTrapezeRight();
 	testIsGaussian();
 	testIsBell();
-	std::cout << std::endl << "here";
 	testSugeno();
 	testTips();
 }

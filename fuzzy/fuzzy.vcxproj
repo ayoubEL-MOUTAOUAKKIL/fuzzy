@@ -154,6 +154,12 @@
     <ClInclude Include="core\UnaryExpressionModel.h" />
     <ClInclude Include="core\UnaryShadowExpression.h" />
     <ClInclude Include="core\ValueModel.h" />
+    <ClInclude Include="domain\Car.h" />
+    <ClInclude Include="domain\categorie\Categorie.h" />
+    <ClInclude Include="domain\categorie\City.h" />
+    <ClInclude Include="domain\categorie\Sports.h" />
+    <ClInclude Include="domain\categorie\Suv.h" />
+    <ClInclude Include="domain\categorie\Utilitary.h" />
     <ClInclude Include="fuzzy\Agg.h" />
     <ClInclude Include="fuzzy\And.h" />
     <ClInclude Include="fuzzy\CogDefuzz.h" />
