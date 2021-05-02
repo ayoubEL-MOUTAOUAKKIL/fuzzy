@@ -27,18 +27,15 @@ namespace fuzzy {
 	template <class T>
 	T SugenoConclusion<T>::evaluate(std::vector<core::Expression<T>*>& operands) const
 	{
-		std::vector<T>::const_iterator itcoef = coeff.begin();
-		std::vector<core::Expression<T>*>::const_iterator itexpr = operands.begin();
+		typename vector<T>::const_iterator it = coeff.begin();
+		typename vector<core::Expression<T>*>::const_iterator ite = operands.begin();
+			
 		T z = 0;
 
-		// calcul de la somme des Zi
-		for (; itexpr != operands->end() && itcoef != coeff->end(); itexpr++, itcoef++)
+		for (; ite != operands.end() && it != coeff.end(); ite++, it++)
 		{
-			// evaluation de la règle courante
-			T eval = (*itexpr)->evaluate();
-
-			// multiplication par le coefficient associé à cette règle
-			z += (*itcoef) * eval;
+			T eval = (*ite)->evaluate();
+			z += (*it) * eval;
 		}
 
 		return z;

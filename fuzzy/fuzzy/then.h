@@ -48,7 +48,10 @@ namespace fuzzy {
 
 	template<typename T>
 	T SugenoThen<T>::premiseValue(){
-		return premiseVal;
+		if (premiseVal != NULL) {
+			return premiseVal;
+		}
+		
 	}
 }
 #endif
