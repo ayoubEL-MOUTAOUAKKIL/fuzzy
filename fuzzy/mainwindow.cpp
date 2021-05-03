@@ -32,11 +32,13 @@ void MainWindow::addComboBoxElements(){
     QComboBox* qC = ui->comboBox_Category;
     qC->addItem("city-run");
     qC->addItem("SUV");
+    qC->addItem("electric");
+    qC->addItem("sport");
 
     QComboBox* qCp = ui->comboBox_Consumption;
     qCp->addItem("low");
     qCp->addItem("medium");
-     qCp->addItem("high");
+    qCp->addItem("high");
 
     QComboBox* qG = ui->comboBox_GearBox;
     qG->addItem("manual");
