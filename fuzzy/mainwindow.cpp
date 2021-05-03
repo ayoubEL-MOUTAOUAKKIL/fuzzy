@@ -34,8 +34,9 @@ void MainWindow::addComboBoxElements(){
     qC->addItem("SUV");
 
     QComboBox* qCp = ui->comboBox_Consumption;
-    qCp->addItem("citadine");
-    qCp->addItem("SUV");
+    qCp->addItem("low");
+    qCp->addItem("medium");
+     qCp->addItem("high");
 
     QComboBox* qG = ui->comboBox_GearBox;
     qG->addItem("manual");
