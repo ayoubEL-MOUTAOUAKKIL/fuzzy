@@ -104,5 +104,5 @@ void MainWindow::on_RunButton_clicked()
     float f = e.toFloat();
     qDebug() << f ;
     //qDebug() << QCoreApplication::applicationDirPath(); c'est ici que se trouve l'éxécutable et où j'ai mit ma seule image
-    setImage("Audi A1","82","5","citadine","5,7","manuelle","21500","AudiA1.jpg");
+    setImage("Audi A1","82","5","citadine","5,7","manuelle","21500","../fuzzy/datas/pictures/a1.jpg");
 }
