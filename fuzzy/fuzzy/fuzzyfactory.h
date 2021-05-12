@@ -136,8 +136,6 @@ namespace fuzzy
 	{
 		return this->newUnary((core::UnaryExpression<T>*) _i, _o);
 	}
-
-
 }
 
 #endif

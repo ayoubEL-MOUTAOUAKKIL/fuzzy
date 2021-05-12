@@ -14,6 +14,4 @@ void testNotMinus1();
 void testIsTriangle();
 void tests();
 
-
-
 #endif

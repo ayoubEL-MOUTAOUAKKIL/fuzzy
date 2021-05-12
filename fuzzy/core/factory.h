@@ -10,7 +10,6 @@
 
 namespace core
 {
-
 	template <typename T>
 	class ExpressionFactory
 	{
@@ -29,7 +28,6 @@ namespace core
 		Memory memory;
 	};
 
-	
 	template<typename T>
 	ExpressionFactory<T>::~ExpressionFactory()
 	{
@@ -37,7 +35,6 @@ namespace core
 			delete e;
 		}
 	}
-
 
 	template<typename T>
 	Expression<T>* ExpressionFactory<T>::hold(Expression<T>* _e)
@@ -65,8 +62,5 @@ namespace core
 	}
 
 }
-
-
-
 
 #endif

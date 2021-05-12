@@ -18,10 +18,6 @@ namespace fuzzy {
 
 	template<typename T>
 	T AggMax<T>::evaluate(core::Expression<T>* _e1, core::Expression<T>* _e2)const{
-		/*std::cout << std::endl << "-->aggmax2" ;
-		std::cout << std::endl << "-->1: " << _e1->evaluate();
-		std::cout << std::endl << "-->2: " << _e2->evaluate();
-		std::cout << std::endl << "-->result: " << fmax(_e1->evaluate(), _e2->evaluate());*/
 		return fmax(_e1->evaluate(), _e2->evaluate());
 	}
 
@@ -36,7 +32,4 @@ namespace fuzzy {
 		return (_e1->evaluate() + _e2->evaluate()) - (_e1->evaluate() * _e2->evaluate());
 	}
 }
-
-
-
 #endif

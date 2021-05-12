@@ -26,7 +26,7 @@
 #include "tests.h"
 #include "../fuzzy/CogDefuzz.h"
 
-
+#include "../repository/CSVParser.h"
 
 using NUMERIC = double;
 
@@ -434,7 +434,6 @@ void tests()
 	testIsTrapezeRight();
 	testIsGaussian();
 	testIsBell();
-	std::cout << std::endl << "here";
 	testSugeno();
 	testTips();
 }

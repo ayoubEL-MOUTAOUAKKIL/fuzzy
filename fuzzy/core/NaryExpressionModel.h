@@ -41,10 +41,4 @@ namespace core {
 		}
 	}
 }
-
-
-
-
-
-
 #endif

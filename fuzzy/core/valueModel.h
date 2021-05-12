@@ -40,7 +40,4 @@ namespace core {
 	}
 }
 
-
-
-
 #endif

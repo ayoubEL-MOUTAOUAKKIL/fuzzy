@@ -2,14 +2,9 @@
 #ifndef NOT_H
 #define NOT_H
 
-
-
 namespace fuzzy {
-
-
 	template<typename T>
 	class Not : public core::UnaryExpression<T> {
-
 	};
 
 	template<typename T>
@@ -24,14 +19,4 @@ namespace fuzzy {
 		return 1 - _e1->evaluate();
 	}
 }
-
-
-
-
-
-
-
-
-
-
 #endif

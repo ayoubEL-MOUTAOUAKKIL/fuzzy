@@ -4,7 +4,6 @@
 #include "../core/Expression.h"
 #include <vector>
 
-
 namespace fuzzy {
 	template<typename T>
 	class SugenoConclusion :public core::NaryExpression<T> {
@@ -18,9 +17,6 @@ namespace fuzzy {
 	private:
 		std::vector<T> coeff;
 	};
-
-	
-
 
 	template<typename T>
 	SugenoConclusion<T>::SugenoConclusion(std::vector<T>& _coeff):
@@ -50,9 +46,6 @@ namespace fuzzy {
 	{
 		return coeff;
 	}
-
-
-
 }
 
 

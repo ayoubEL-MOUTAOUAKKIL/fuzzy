@@ -52,11 +52,6 @@ namespace core {
 		}
 		return os;
 
-	}
-
-	
+	}	
 }
-
-
-
 #endif

@@ -15,34 +15,34 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="core\expression.h">
+    <ClInclude Include="core\Expression.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="core\valueModel.h">
+    <ClInclude Include="core\ValueModel.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="tests\tests.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="fuzzy\and.h">
+    <ClInclude Include="fuzzy\And.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="fuzzy\then.h">
+    <ClInclude Include="fuzzy\Then.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="fuzzy\agg.h">
+    <ClInclude Include="fuzzy\Agg.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="core\UnaryExpressionModel.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="fuzzy\not.h">
+    <ClInclude Include="fuzzy\Not.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="fuzzy\is.h">
+    <ClInclude Include="fuzzy\Is.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="core\evaluator.h">
+    <ClInclude Include="core\Evaluator.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="fuzzy\MandaniDefuzz.h">
@@ -60,10 +60,10 @@
     <ClInclude Include="core\BinaryShadowExpression.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="core\factory.h">
+    <ClInclude Include="core\Factory.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="fuzzy\fuzzyfactory.h">
+    <ClInclude Include="fuzzy\Fuzzyfactory.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="core\NaryExpressionModel.h">
@@ -78,15 +78,72 @@
     <ClInclude Include="fuzzy\SugenoConclusion.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
+    <ClInclude Include="domain\Car.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="domain\categorie\Category.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="domain\categorie\Sports.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="domain\categorie\Suv.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="domain\categorie\Utilitary.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="domain\categorie\City.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="repository\csv\CSVParser.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="domain\categorie\CategoryFactory.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="domain\categorie\Electric.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="domain\CarBuilder.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="domain\CarFactory.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="repository\car\CarRepository.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="fuzzy\or.h">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
     <ClCompile Include="tests\tests.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="fuzzy\Or.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClCompile>
+    <ClCompile Include="repository\csv\CSVParser.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="domain\categorie\CategoryFactory.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="domain\Car.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="domain\CarBuiler.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="domain\CarFactory.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="repository\car\InMemoryCarRepository.h">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="repository\car\InMemoryCarRepository.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>
