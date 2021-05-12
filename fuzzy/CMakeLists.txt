@@ -43,6 +43,20 @@ set(PROJECT_SOURCES
         core/UnaryExpressionModel.h
         core/UnaryShadowExpression.h
         core/valueModel.h
+        repository/csv/CSVParser.h
+        repository/car/CarRepository.h
+        repository/car/InMemoryCarRepository.h
+        domain/Car.h
+        domain/CarBuilder.h
+        domain/CarFactory.h
+        domain/categorie/Category.h
+        domain/categorie/CategoryFactory.h
+        domain/categorie/City.h
+        domain/categorie/Electric.h
+        domain/categorie/Sports.h
+        domain/categorie/Suv.h
+        domain/categorie/Utilitary.h
+        Generator/expressiongenerator.h
         fuzzy/agg.h
         fuzzy/and.h
         fuzzy/CogDefuzz.h

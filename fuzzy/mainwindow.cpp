@@ -9,13 +9,17 @@
 #include <QPixmap>
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
-    , ui(new Ui::MainWindow), qP(new QLineEdit()),qC(new QLineEdit()),qS(new QLineEdit()),qPr(new QLineEdit())
+    , ui(new Ui::MainWindow),
+      powerField(new QLineEdit()),
+      consumptionField(new QLineEdit()),
+      seatsField(new QLineEdit()),
+      priceField(new QLineEdit())
 {
     ui->setupUi(this);
-    qP = ui->lineEdit_Power;
-    qC= ui->lineEdit_Consumption;
-    qS= ui->lineEdit_Seats;
-    qPr= ui->lineEdit_Price;
+    priceField = ui->lineEdit_Power;
+    consumptionField = ui->lineEdit_Consumption;
+    seatsField = ui->lineEdit_Seats;
+    priceField = ui->lineEdit_Price;
 }
 
 MainWindow::~MainWindow()
@@ -29,65 +33,65 @@ Ui::MainWindow* MainWindow::getUi() const{
 
 void MainWindow::addComboBoxElements(){
 
-    QComboBox* qC = ui->comboBox_Category;
-    qC->addItem("city-run");
-    qC->addItem("SUV");
-    qC->addItem("electric");
-    qC->addItem("sport");
+    QComboBox* categorySelector = ui->comboBox_Category;
+    categorySelector->addItem("city-run");
+    categorySelector->addItem("SUV");
+    categorySelector->addItem("electric");
+    categorySelector->addItem("sport");
 
-    QComboBox* qG = ui->comboBox_GearBox;
-    qG->addItem("manual");
-    qG->addItem("automatic");
-
-
+    QComboBox* gearboxSelector = ui->comboBox_GearBox;
+    gearboxSelector->addItem("manual");
+    gearboxSelector->addItem("automatic");
 }
 
 void MainWindow::setValidators(){
-    QDoubleValidator* qV = new QDoubleValidator(0.0, 1000.0, 2);
-    qV->setNotation(QDoubleValidator::StandardNotation);
-    qP->setValidator(qV);
+    QDoubleValidator* powerValidator = new QDoubleValidator(0.0, 9999.0, 2);
+    powerValidator->setNotation(QDoubleValidator::StandardNotation);
+    powerField->setValidator(powerValidator);
 
-    QDoubleValidator* qVc = new QDoubleValidator(0.0, 10.0, 2);
-    qVc->setNotation(QDoubleValidator::StandardNotation);
-    qC->setValidator(qVc);
+    QDoubleValidator* consumptionValidator = new QDoubleValidator(0.0, 99.0, 2);
+    consumptionValidator->setNotation(QDoubleValidator::StandardNotation);
+    consumptionField->setValidator(consumptionValidator);
 
-    QIntValidator* qVs = new QIntValidator(0, 9);
-    qS->setValidator(qVs);
+    QIntValidator* seatsValidator = new QIntValidator(0, 9);
+    seatsField->setValidator(seatsValidator);
 
-    QDoubleValidator* qVp = new QDoubleValidator(0.0, 10000.0, 2);
-    qVp->setNotation(QDoubleValidator::StandardNotation);
-    qPr->setValidator(qVp);
-
+    QDoubleValidator* priceValidator = new QDoubleValidator(0.0, 99999999.0, 2);
+    priceValidator->setNotation(QDoubleValidator::StandardNotation);
+    priceField->setValidator(priceValidator);
 }
 
 void MainWindow::setImage(QString name,QString power,QString seats, QString category,QString consumption,QString gearbox,QString price,QString pic){
-     QLabel* qL = ui->Label_Car;
-     QLabel* qP = ui->carPower;
-     QLabel* qS = ui->carSeats;
-     QLabel* qC = ui->carCategory;
-     QLabel* qCp = ui->carConsumption;
-     QLabel* qG = ui->carGearBox;
-     QLabel* qPr = ui->carPrice;
-     QLabel* qP1 = ui->titlePower;
-     QLabel* qS1 = ui->titleSeats;
-     QLabel* qC1 = ui->titleCategory;
-     QLabel* qCp1 = ui->titleConsumption;
-     QLabel* qG1 = ui->title_GearBox;
-     QLabel* qPr1 = ui->titlePrice;
 
-     qL->setText(name);
-     qP->setText(power);
-     qS->setText(seats);
-     qC->setText(category);
-     qCp->setText(consumption);
-     qG->setText(gearbox);
-     qPr->setText(price);
-     qP1->setText("Power :");
-     qS1->setText("Seats :");
-     qC1->setText("Category :");
-     qCp1->setText("Consumption :");
-     qG1->setText("Gear Box :");
-     qPr1->setText("Price :");
+     QLabel* titlePower = ui->titlePower;
+     QLabel* titleSeats = ui->titleSeats;
+     QLabel* titleCategory = ui->titleCategory;
+     QLabel* titleConsumption = ui->titleConsumption;
+     QLabel* titleGearBox = ui->title_GearBox;
+     QLabel* titlePrice = ui->titlePrice;
+
+     QLabel* labelCar = ui->Label_Car;
+     QLabel* labelPower = ui->carPower;
+     QLabel* labelSeats = ui->carSeats;
+     QLabel* labelCategory = ui->carCategory;
+     QLabel* labelConsumption = ui->carConsumption;
+     QLabel* labelGearbox = ui->carGearBox;
+     QLabel* labelPrice = ui->carPrice;
+
+     labelCar->setText(name);
+     labelPower->setText(power);
+     labelSeats->setText(seats);
+     labelCategory->setText(category);
+     labelConsumption->setText(consumption);
+     labelGearbox->setText(gearbox);
+     labelPrice->setText(price);
+
+     titlePower->setText("Power :");
+     titleSeats->setText("Seats :");
+     titleCategory->setText("Category :");
+     titleConsumption->setText("Consumption :");
+     titleGearBox->setText("Gear Box :");
+     titlePrice->setText("Price :");
 
      QPixmap picture(pic);
      int w = ui->label_pic->width();

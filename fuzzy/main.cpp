@@ -6,16 +6,22 @@
 #include "domain/CarBuilder.h"
 #include "domain/categorie/CategoryFactory.h"
 #include "domain/CarFactory.h"
+#include "mainwindow.h"
+#include <QApplication>
 #include <string>
 #include <vector>
 
-int main() {
-	repository::CarRepository* carRepository = new repository::InMemoryCarRepository();
-	repository::CSVParser parser(std::string("./datas/cars.csv"), ',');
+int main(int argc, char** argv) {
+    QApplication a(argc, argv);
+        MainWindow w;
+        w.addComboBoxElements();
+        w.setValidators();
+        w.show();
+    repository::CarRepository* carRepository = new repository::InMemoryCarRepository();
+    repository::CSVParser parser("./datas/cars.csv", ',');
 	std::vector<std::vector<std::string>> lines = parser.getLines();
 	for (auto line = lines.begin(); line != lines.end(); ++line) {
 		carRepository->save(domain::CarFactory::createCar((*line)));
-	}
-	tests();
-	return 0;
+    }
+    return a.exec();
 }

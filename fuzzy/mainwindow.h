@@ -24,9 +24,9 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    QLineEdit* qP;
-    QLineEdit* qC;
-    QLineEdit* qS;
-    QLineEdit* qPr;
+    QLineEdit* powerField;
+    QLineEdit* consumptionField;
+    QLineEdit* seatsField;
+    QLineEdit* priceField;
 };
 #endif // MAINWINDOW_H
