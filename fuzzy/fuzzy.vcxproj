@@ -139,8 +139,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="domain\Car.cpp" />
+    <ClCompile Include="domain\CarBuiler.cpp" />
+    <ClCompile Include="domain\CarFactory.cpp" />
+    <ClCompile Include="domain\categorie\CategoryFactory.cpp" />
     <ClCompile Include="fuzzy\Or.h" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="repository\car\InMemoryCarRepository.cpp" />
+    <ClCompile Include="repository\car\InMemoryCarRepository.h" />
+    <ClCompile Include="repository\csv\CSVParser.cpp" />
     <ClCompile Include="tests\tests.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -155,8 +162,12 @@
     <ClInclude Include="core\UnaryShadowExpression.h" />
     <ClInclude Include="core\ValueModel.h" />
     <ClInclude Include="domain\Car.h" />
-    <ClInclude Include="domain\categorie\Categorie.h" />
+    <ClInclude Include="domain\CarBuilder.h" />
+    <ClInclude Include="domain\CarFactory.h" />
+    <ClInclude Include="domain\categorie\Category.h" />
+    <ClInclude Include="domain\categorie\CategoryFactory.h" />
     <ClInclude Include="domain\categorie\City.h" />
+    <ClInclude Include="domain\categorie\Electric.h" />
     <ClInclude Include="domain\categorie\Sports.h" />
     <ClInclude Include="domain\categorie\Suv.h" />
     <ClInclude Include="domain\categorie\Utilitary.h" />
@@ -170,6 +181,8 @@
     <ClInclude Include="fuzzy\SugenoConclusion.h" />
     <ClInclude Include="fuzzy\SugenoDefuzz.h" />
     <ClInclude Include="fuzzy\Then.h" />
+    <ClInclude Include="repository\car\CarRepository.h" />
+    <ClInclude Include="repository\csv\CSVParser.h" />
     <ClInclude Include="tests\tests.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

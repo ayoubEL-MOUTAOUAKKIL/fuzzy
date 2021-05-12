@@ -1,10 +1,10 @@
 #ifndef CITY_H
 #define CITY_H
 
-#include "Categorie.h"
+#include "Category.h"
 
 namespace domain {
-	class City : public Categorie{};
+	class City : public Category{};
 }
 
 #endif // !CITY_H

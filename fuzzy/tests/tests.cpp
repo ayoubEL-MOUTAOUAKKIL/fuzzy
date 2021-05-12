@@ -26,7 +26,7 @@
 #include "tests.h"
 #include "../fuzzy/CogDefuzz.h"
 
-
+#include "../repository/CSVParser.h"
 
 using NUMERIC = double;
 

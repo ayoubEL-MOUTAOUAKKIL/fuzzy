@@ -1,10 +1,10 @@
 #ifndef SUV_H
 #define SUV_H
 
-#include "Categorie.h"
+#include "Category.h"
 
 namespace domain {
-	class Suv : public Categorie{};
+	class Suv : public Category{};
 }
 
 #endif // !SUV_H

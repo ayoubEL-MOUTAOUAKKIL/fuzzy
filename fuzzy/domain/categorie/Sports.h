@@ -1,11 +1,11 @@
 #ifndef SPORTS_H
 #define SPORTS_H
 
-#include "Categorie.h"
+#include "Category.h"
 
 namespace domain {
 
-	class Sports : public Categorie{
+	class Sports : public Category{
 
 	};
 }

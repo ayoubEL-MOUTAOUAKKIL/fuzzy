@@ -1,11 +1,10 @@
 #ifndef UTILITARY_H
 #define UTILITARY_H
 
-#include "Categorie.h"
-#include "../Car.h"
+#include "Category.h"
 
 namespace domain {
-	class Utilitary : public Categorie{};
+	class Utilitary : public Category{};
 }
 
 #endif // !UTILITARY_H
