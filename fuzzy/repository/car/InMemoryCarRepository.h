@@ -9,7 +9,7 @@ namespace repository {
 	{
 	public:
 		InMemoryCarRepository() = default;
-		virtual ~InMemoryCarRepository();
+        virtual ~InMemoryCarRepository();
 		virtual void save(const domain::Car&);
 	private:
 		std::list<domain::Car> cars;
