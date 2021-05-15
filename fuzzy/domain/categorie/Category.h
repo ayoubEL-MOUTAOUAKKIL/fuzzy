@@ -3,6 +3,8 @@
 
 namespace domain {
 	class Category{
+    public:
+        virtual int getType() const { return -1; };
 	};
 }
 

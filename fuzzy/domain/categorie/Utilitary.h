@@ -4,7 +4,9 @@
 #include "Category.h"
 
 namespace domain {
-	class Utilitary : public Category{};
+    class Utilitary : public Category{
+        virtual int getType() const { return 5; };
+    };
 }
 
 #endif // !UTILITARY_H

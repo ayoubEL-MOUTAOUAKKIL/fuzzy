@@ -6,7 +6,7 @@
 namespace domain {
 
 	class Sports : public Category{
-
+        virtual int getType() const { return 3; };
 	};
 }
 
