@@ -6,7 +6,7 @@
 #include "domain/CarBuilder.h"
 #include "domain/categorie/CategoryFactory.h"
 #include "domain/CarFactory.h"
-#include "Generator/expressiongenerator.h"
+#include "generator/Expressiongenerator.h"
 #include "mainwindow.h"
 #include <QApplication>
 #include <string>

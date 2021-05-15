@@ -64,7 +64,7 @@ set(PROJECT_SOURCES
         domain/categorie/Utilitary.h
         controller/CarController.h
         controller/CarController.cpp
-        Generator/expressiongenerator.h
+        generator/Expressiongenerator.h
         fuzzy/agg.h
         fuzzy/and.h
         fuzzy/CogDefuzz.h
