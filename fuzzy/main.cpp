@@ -8,6 +8,8 @@
 #include "domain/CarFactory.h"
 #include "generator/Expressiongenerator.h"
 #include "mainwindow.h"
+#include "controller/CarController.h"
+#include "fuzzy/is.h"
 #include <QApplication>
 #include <string>
 #include <vector>
@@ -19,17 +21,26 @@ int main(int argc, char** argv) {
     repository::CarRepository* carRepository = repository::InMemoryCarRepository::getInstance();
     repository::CSVParser parser("../fuzzy/datas/cars.csv", ',');
     std::vector<std::vector<std::string>> lines = parser.getLines();
-    std::cout << lines.size() << std::endl;
-    for (auto line = lines.begin(); line != lines.end(); ++line) {
-        carRepository->save(domain::CarFactory::createCar(*line));
+    for (auto line : lines) {
+        carRepository->save(domain::CarFactory::createCar(line));
     }
+
     ExpressionGenerator<double> e;
     e.scan();
-    QApplication a(argc, argv);
+    CarController<double>* carController = new CarController<double>();
+    std::vector<double> prices;
+    fuzzy::isTriangle<double> issou(0,0,0);
+    for (auto car : carRepository->getAllCars()) {
+        prices.push_back(car.getPrice());
+        std::cout << car.getPrice() << std::endl;
+    }
+   fuzzy::is<double> iss = carController->createIs(&issou ,prices);
+   /* QApplication a(argc, argv);
     MainWindow w;
     QTextStream out(stdout);
     w.addComboBoxElements();
     w.setValidators();
     w.show();
-    return a.exec();
+    return a.exec();*/
+    return 0;
 }
