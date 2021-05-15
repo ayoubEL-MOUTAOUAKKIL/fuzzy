@@ -1,9 +1,13 @@
 #ifndef EXPRESSIONGENERATOR_H
 #define EXPRESSIONGENERATOR_H
 
+#include <iostream>
+#include <map>
+
 #include "../core/expression.h"
 #include "../core/valueModel.h"
-
+#include "repository/car/CarRepository.h"
+#include "repository/car/InMemoryCarRepository.h"
 #include "../fuzzy/CogDefuzz.h"
 #include "../core/evaluator.h"
 #include "../fuzzy/or.h"
@@ -21,7 +25,8 @@ public:
     ExpressionGenerator();
     ~ExpressionGenerator() = default;
 
-    T generate(T,T,T,T,T,T);
+    T generate(T,T,T,T,T,T)const;
+    void scan() const;
 };
 
 template<typename T>
@@ -29,7 +34,7 @@ ExpressionGenerator<T>::ExpressionGenerator()
 {}
 
 template<typename T>
-T ExpressionGenerator<T>::generate(T _power, T _seats,T _category,T _consumption,T _gearBox,T _price){
+T ExpressionGenerator<T>::generate(T _power, T _seats,T _category,T _consumption,T _gearBox,T _price)const{
 
         using Not = fuzzy::NotMinus1<T>;
         using AndMin = fuzzy::AndMin<T>;
@@ -60,9 +65,9 @@ T ExpressionGenerator<T>::generate(T _power, T _seats,T _category,T _consumption
          *
         */
 
-        IsTriangle poor(-5, 0, 5);
-        IsTriangle good(0, 5, 10);
-        IsTriangle excellent(5, 10, 15);
+        IsTriangle poor(-5, 200, 500);
+        IsTriangle good(0, 100, 10000);
+        IsTriangle excellent(5000, 10000, 1500000);
 
         IsTriangle cheap(0, 5, 10);
         IsTriangle average(10, 15, 20);
@@ -201,6 +206,24 @@ T ExpressionGenerator<T>::generate(T _power, T _seats,T _category,T _consumption
             price.setValue(_price);
 
             return result->evaluate();
+}
+
+template<typename T>
+void ExpressionGenerator<T>::scan() const{
+    repository::CarRepository* carRepository = repository::InMemoryCarRepository::getInstance();
+    std::vector<domain::Car> cars = carRepository->getAllCars();
+    for (auto car = cars.begin(); car != cars.end(); ++car) {
+        T power = car->getPower();
+        T seats = car->getPlaces();
+        T category = car->getCategory().getType();
+        T consumption = car->getConsumption();
+        T gearBox;
+        car->isManualGearbox() ? (gearBox = 1) : (gearBox = 0);
+        T price = car->getPrice();
+        T value = ExpressionGenerator<T>::generate(power,seats,category,consumption,gearBox,price);
+        //carRepository->setValue(car,value);
+    }
+
 }
 
 #endif // EXPRESSIONGENERATOR_H

@@ -23,7 +23,8 @@ int main(int argc, char** argv) {
     for (auto line = lines.begin(); line != lines.end(); ++line) {
         carRepository->save(domain::CarFactory::createCar(*line));
     }
-
+    ExpressionGenerator<double> e;
+    e.scan();
     QApplication a(argc, argv);
     MainWindow w;
     QTextStream out(stdout);
