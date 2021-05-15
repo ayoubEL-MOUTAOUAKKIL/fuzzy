@@ -10,16 +10,22 @@
 #include <QApplication>
 #include <string>
 #include <vector>
+#include <QDebug>
+#include <QString>
+#include <iostream>
 
 int main(int argc, char** argv) {
-    repository::CarRepository* carRepository = new repository::InMemoryCarRepository();
-    repository::CSVParser parser("./datas/cars.csv", ',');
+    repository::CarRepository* carRepository = repository::InMemoryCarRepository::getInstance();
+    repository::CSVParser parser("../fuzzy/datas/cars.csv", ',');
     std::vector<std::vector<std::string>> lines = parser.getLines();
+    std::cout << lines.size() << std::endl;
     for (auto line = lines.begin(); line != lines.end(); ++line) {
-        carRepository->save(domain::CarFactory::createCar((*line)));
+        carRepository->save(domain::CarFactory::createCar(*line));
     }
+
     QApplication a(argc, argv);
     MainWindow w;
+    QTextStream out(stdout);
     w.addComboBoxElements();
     w.setValidators();
     w.show();

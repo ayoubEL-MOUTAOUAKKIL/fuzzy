@@ -278,7 +278,6 @@ namespace fuzzy {
 	{
 		const T ev = _e1->evaluate();
 
-
 		return exp(-(ev - c)*(ev - c)/(2*tau*tau));
 	}
 

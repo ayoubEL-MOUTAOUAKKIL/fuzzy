@@ -188,9 +188,6 @@ T ExpressionGenerator<T>::generate(T _power, T _seats,T _category,T _consumption
                 )
 
                 );
-
-
-
             core::Expression<T>* result = f.newMandanidaniDefuzz(&carIndicator, r, 0, 30, 1);
 
             power.setValue(_power);
@@ -201,8 +198,6 @@ T ExpressionGenerator<T>::generate(T _power, T _seats,T _category,T _consumption
             price.setValue(_price);
 
             return result->evaluate();
-
-
 }
 
 #endif // EXPRESSIONGENERATOR_H

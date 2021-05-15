@@ -62,6 +62,8 @@ set(PROJECT_SOURCES
         domain/categorie/Sports.h
         domain/categorie/Suv.h
         domain/categorie/Utilitary.h
+        controller/CarController.h
+        controller/CarController.cpp
         Generator/expressiongenerator.h
         fuzzy/agg.h
         fuzzy/and.h
@@ -75,6 +77,7 @@ set(PROJECT_SOURCES
         fuzzy/SugenoDefuzz.h
         fuzzy/then.h
         tests/tests.h
+        datas/cars.csv
         mainwindow.ui
 )
 

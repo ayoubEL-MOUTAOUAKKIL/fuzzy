@@ -6,13 +6,18 @@
 
 namespace repository {
 	class InMemoryCarRepository : public repository::CarRepository
-	{
+    {
 	public:
-		InMemoryCarRepository() = default;
-        virtual ~InMemoryCarRepository();
-		virtual void save(const domain::Car&);
-	private:
-		std::list<domain::Car> cars;
+        ~InMemoryCarRepository();
+        InMemoryCarRepository(InMemoryCarRepository&) = delete;
+        void operator=(const InMemoryCarRepository&) = delete;
+        static InMemoryCarRepository* getInstance();
+        virtual void save(const domain::Car&);
+        virtual std::vector<domain::Car> getAllCars() const;
+    private:
+        static InMemoryCarRepository* instance;
+        InMemoryCarRepository() = default;
+        std::list<domain::Car> cars;
 	};
 }
 
