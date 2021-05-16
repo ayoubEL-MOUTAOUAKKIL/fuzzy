@@ -24,7 +24,8 @@ int main(int argc, char** argv) {
         carRepository->save(domain::CarFactory::createCar(*line));
     }
     ExpressionGenerator<double> e;
-    e.scan();
+    domain::Car* c = e.scan(179);
+    //std::cout << std::endl << c->getName();
     QApplication a(argc, argv);
     MainWindow w;
     QTextStream out(stdout);
