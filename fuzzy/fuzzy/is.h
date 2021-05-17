@@ -7,7 +7,7 @@ namespace fuzzy {
 
 	template<typename T>
 	class is :public core::UnaryExpression<T> {
-	};
+    };
 	/*triangle*/
 	template<typename T>
 	class isTriangle : public is<T> {
@@ -19,7 +19,7 @@ namespace fuzzy {
 		T getMax()const;
 		T getMid()const;
 
-		virtual T evaluate(core::Expression<T>*)const;
+        virtual T evaluate(core::Expression<T>*) const override;
 
 	private:
 		T min, mid, max;

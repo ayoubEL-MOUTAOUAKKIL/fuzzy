@@ -63,7 +63,6 @@ set(PROJECT_SOURCES
         domain/categorie/Suv.h
         domain/categorie/Utilitary.h
         controller/CarController.h
-        controller/CarController.cpp
         generator/Expressiongenerator.h
         fuzzy/agg.h
         fuzzy/and.h
