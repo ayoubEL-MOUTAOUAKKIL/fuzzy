@@ -104,15 +104,24 @@ T ExpressionGenerator<T>::generate(T _power, T _seats,T _category,T _consumption
         IsTriangle generous(20, 25, 30);
 
 
+        //carindicator
+        IsTriangle economicCar(0, 30, 60);
+        IsTriangle lowConsumptionCar(60,90,120);
+        IsTriangle crumpedCar(120,150,180);
+        IsTriangle highConsumptionCar(180, 210, 240);
+        IsTriangle spaciousCar(240, 270, 300);
+        IsTriangle expensiveCar(300, 230, 330);
+
+
         /*****/
 
-        Value power(0);
-        Value seats(0);
-        Value category(0);
-        Value consumption(0);
-        Value gearBox(0);
-        Value price(0);
-        Value carIndicator(0);
+        Value power(_power);
+        Value seats(_seats);
+        Value category(_category);
+        Value consumption(_consumption);
+        Value gearBox(_gearBox);
+        Value price(_price);
+        Value carIndicator(T(0));
 
 
 
@@ -120,18 +129,18 @@ T ExpressionGenerator<T>::generate(T _power, T _seats,T _category,T _consumption
                                                             f.newAgg(
                                                                 f.newThen(
                                                                     f.newIs(weak, &power),
-                                                                    f.newIs(&medium, &carIndicator)
+                                                                    f.newIs(&economicCar, &carIndicator)
                                                                 )
                                                                 ,
                                                                 f.newThen(
                                                                     f.newIs(medium, &power),
-                                                                    f.newIs(&average, &carIndicator)
+                                                                    f.newIs(&spaciousCar, &carIndicator)
                                                                 )
                                                             )
                                                             ,
                                                             f.newThen(
                                                                 f.newIs(strong, &power),
-                                                                f.newIs(&generous, &carIndicator)
+                                                                f.newIs(&highConsumptionCar, &carIndicator)
                                                             )
                                                         );
 
@@ -139,18 +148,18 @@ T ExpressionGenerator<T>::generate(T _power, T _seats,T _category,T _consumption
                                                             f.newAgg(
                                                                 f.newThen(
                                                                     f.newIs(cWeak, &consumption),
-                                                                    f.newIs(&medium, &carIndicator)
+                                                                    f.newIs(&lowConsumptionCar, &carIndicator)
                                                                 )
                                                                 ,
                                                                 f.newThen(
                                                                     f.newIs(cMedium, &consumption),
-                                                                    f.newIs(&average, &carIndicator)
+                                                                    f.newIs(&economicCar, &carIndicator)
                                                                 )
                                                             )
                                                             ,
                                                             f.newThen(
                                                                 f.newIs(cStrong, &consumption),
-                                                                f.newIs(&generous, &carIndicator)
+                                                                f.newIs(&highConsumptionCar, &carIndicator)
                                                             )
                                                         );
 
@@ -158,17 +167,17 @@ T ExpressionGenerator<T>::generate(T _power, T _seats,T _category,T _consumption
                                                             f.newAgg(
                                                                 f.newThen(
                                                                     f.newIs(notSpacious, &seats),
-                                                                    f.newIs(&cheap, &carIndicator)
+                                                                    f.newIs(&crumpedCar, &carIndicator)
                                                                 ),
                                                                 f.newThen(
                                                                     f.newIs(spacious, &seats),
-                                                                    f.newIs(&average, &carIndicator)
+                                                                    f.newIs(&crumpedCar, &carIndicator)
                                                                 )
                                                             )
                                                             ,
                                                             f.newThen(
                                                                 f.newIs(verySpacious, &seats),
-                                                                f.newIs(&generous, &carIndicator)
+                                                                f.newIs(&highConsumptionCar, &carIndicator)
                                                             )
                                                         );
 
@@ -177,41 +186,41 @@ T ExpressionGenerator<T>::generate(T _power, T _seats,T _category,T _consumption
                                                                     f.newAgg(
                                                                         f.newThen(
                                                                             f.newIs(city, &category),
-                                                                            f.newIs(&cheap, &carIndicator)
+                                                                            f.newIs(&crumpedCar, &carIndicator)
                                                                         )
                                                                         ,
                                                                         f.newThen(
                                                                             f.newIs(electric, &category),
-                                                                            f.newIs(&generous, &carIndicator)
+                                                                            f.newIs(&lowConsumptionCar, &carIndicator)
                                                                         )
                                                                     ),
                                                                     f.newAgg(
                                                                         f.newThen(
                                                                             f.newIs(sport, &category),
-                                                                            f.newIs(&generous, &carIndicator)
+                                                                            f.newIs(&expensiveCar, &carIndicator)
                                                                         )
                                                                         ,
                                                                         f.newThen(
                                                                             f.newIs(suv, &category),
-                                                                            f.newIs(&average, &carIndicator)
+                                                                            f.newIs(&highConsumptionCar, &carIndicator)
                                                                         )
                                                                     )
                                                                 )
                                                             ,
                                                             f.newThen(
                                                                 f.newIs(util, &category),
-                                                                f.newIs(&cheap, &carIndicator)
+                                                                f.newIs(&spaciousCar, &carIndicator)
                                                             )
                                                             );
 
         core::Expression<T>* gearBoxExpression = f.newAgg(
                                                             f.newThen(
-                                                                f.newIs(man, &gearBox),
-                                                                f.newIs(&cheap, &carIndicator)
+                                                                f.newIs(&man, &gearBox),
+                                                                f.newIs(&lowConsumptionCar, &carIndicator)
                                                             ),
                                                             f.newThen(
-                                                                f.newIs(aut, &gearBox),
-                                                                f.newIs(&average, &carIndicator)
+                                                                f.newIs(&aut, &gearBox),
+                                                                f.newIs(&highConsumptionCar, &carIndicator)
                                                             )
                                                         );
 
@@ -223,17 +232,17 @@ T ExpressionGenerator<T>::generate(T _power, T _seats,T _category,T _consumption
                                                             f.newAgg(
                                                                 f.newThen(
                                                                     f.newIs(pcheap, &price),
-                                                                    f.newIs(&cheap, &carIndicator)
+                                                                    f.newIs(&economicCar, &carIndicator)
                                                                 ),
                                                                 f.newThen(
                                                                     f.newIs(paverage, &price),
-                                                                    f.newIs(&average, &carIndicator)
+                                                                    f.newIs(&spaciousCar, &carIndicator)
                                                                 )
                                                             )
                                                             ,
                                                             f.newThen(
                                                                 f.newIs(pgenerous, &price),
-                                                                f.newIs(&generous, &carIndicator)
+                                                                f.newIs(&expensiveCar, &carIndicator)
                                                             )
                                                         );
 
@@ -255,13 +264,6 @@ T ExpressionGenerator<T>::generate(T _power, T _seats,T _category,T _consumption
 
 
             core::Expression<T>* result = f.newMandanidaniDefuzz(&carIndicator, r, 0, 300, 1);
-
-            power.setValue(_power);
-            seats.setValue(_seats);
-            category.setValue(_category);
-            consumption.setValue(_consumption);
-            gearBox.setValue(_gearBox);
-            price.setValue(_price);
 
             return result->evaluate();
 }
