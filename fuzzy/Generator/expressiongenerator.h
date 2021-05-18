@@ -65,12 +65,12 @@ T ExpressionGenerator<T>::generate(T _power, T _seats,T _category,T _consumption
 
 
         repository::CarRepository* carRepository = repository::InMemoryCarRepository::getInstance();
-        std::vector<fuzzy::is<T>*> v_power = controller.createIs<T>(fuzzy::isTriangle<T>(), carRepository->getAllPower());
-        std::vector<fuzzy::is<T>*> v_seats = controller.createIs<T>(fuzzy::isTriangle<T>(), carRepository->getAllSeats());
-        std::vector<fuzzy::is<T>*> v_category = controller.createIs<T>(fuzzy::isTriangle<T>(), carRepository->getAllCategory());
-        std::vector<fuzzy::is<T>*> v_consumption = controller.createIs<T>(fuzzy::isTriangle<T>(), carRepository->getAllConsumption());
-        std::vector<fuzzy::is<T>*> v_gear = controller.createIs<T>(fuzzy::isTrapezeRight<T>(), carRepository->getAllGear());
-        std::vector<fuzzy::is<T>*> v_price = controller.createIs<T>(fuzzy::isTriangle<T>(), carRepository->getAllPrice());
+        std::vector<fuzzy::is<T>*> v_power = controller.createIs(fuzzy::isTriangle<T>(), carRepository->getAllPower());
+        std::vector<fuzzy::is<T>*> v_seats = controller.createIs(fuzzy::isTriangle<T>(), carRepository->getAllSeats());
+        std::vector<fuzzy::is<T>*> v_category = controller.createIs(fuzzy::isTriangle<T>(), carRepository->getAllCategory());
+        std::vector<fuzzy::is<T>*> v_consumption = controller.createIs(fuzzy::isTriangle<T>(), carRepository->getAllConsumption());
+        std::vector<fuzzy::is<T>*> v_gear = controller.createIs(fuzzy::isTrapezeRight<T>(), carRepository->getAllGear());
+        std::vector<fuzzy::is<T>*> v_price = controller.createIs(fuzzy::isTriangle<T>(), carRepository->getAllPrice());
 
 
         //power
@@ -293,7 +293,7 @@ domain::Car* ExpressionGenerator<T>::scan(T _v) const{
             cbuilder.setPower(car->getPower());
             cbuilder.setConsumption(car->getConsumption());
             cbuilder.setPrice(car->getPrice());
-            cbuilder.addPlaces(car->getPlaces());
+            cbuilder.setPlaces(car->getPlaces());
             cbuilder.setPictureName(car->getPictureName());
             car->isManualGearbox() ? cbuilder.withManualGearbox(1) : cbuilder.withManualGearbox(0);
             nCar = &cbuilder.build();
