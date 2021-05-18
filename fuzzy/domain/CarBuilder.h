@@ -13,7 +13,7 @@ namespace domain {
 		CarBuilder(): car(*new domain::Car()) {};
 		CarBuilder& setName(const std::string);
 		CarBuilder& setPower(const float);
-		CarBuilder& addPlaces(const int);
+        CarBuilder& setPlaces(const int);
 		CarBuilder& setCategory(const domain::Category&);
 		CarBuilder& setPrice(const float);
 		CarBuilder& withManualGearbox(const bool);

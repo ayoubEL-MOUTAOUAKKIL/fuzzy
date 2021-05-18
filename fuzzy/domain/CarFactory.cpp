@@ -9,7 +9,7 @@ namespace domain {
 		return builder
 			->setName(_csvLine[0])
 			.setPower(std::stof(_csvLine[1]))
-			.addPlaces(std::stoi(_csvLine[2]))
+            .setPlaces(std::stoi(_csvLine[2]))
 			.setCategory(domain::CategoryFactory().createCategory(_csvLine[3]))
 			.setConsumption(std::stof(_csvLine[4]))
 			.withManualGearbox(_csvLine[5].compare("manuelle") ? true : false)

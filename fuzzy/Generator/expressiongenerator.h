@@ -36,151 +36,151 @@ ExpressionGenerator<T>::ExpressionGenerator()
 template<typename T>
 T ExpressionGenerator<T>::generate(T _power, T _seats,T _category,T _consumption,T _gearBox,T _price) const
 {
-        using Not = fuzzy::NotMinus1<T>;
-        using AndMin = fuzzy::AndMin<T>;
-        using OrMax = fuzzy::OrMax<T>;
-        using ThenMin = fuzzy::ThenMin<T>;
-        using AggMax = fuzzy::AggMax<T>;
-        using CogDefuzz = fuzzy::CogDefuzz<T>;
-        using FuzzyExpressionFactory = fuzzy::FuzzyExpressionFactory<T>;
-        using IsTriangle = fuzzy::isTriangle<T>;
-        using Value = core::valueModel<T>;
+    using Not = fuzzy::NotMinus1<T>;
+    using AndMin = fuzzy::AndMin<T>;
+    using OrMax = fuzzy::OrMax<T>;
+    using ThenMin = fuzzy::ThenMin<T>;
+    using AggMax = fuzzy::AggMax<T>;
+    using CogDefuzz = fuzzy::CogDefuzz<T>;
+    using FuzzyExpressionFactory = fuzzy::FuzzyExpressionFactory<T>;
+    using IsTriangle = fuzzy::isTriangle<T>;
+    using Value = core::valueModel<T>;
 
-        Not opNot;
-        AndMin opAnd;
-        OrMax opOr;
-        ThenMin opThen;
-        AggMax opAgg;
-        CogDefuzz opMDefuzz;
+    Not opNot;
+    AndMin opAnd;
+    OrMax opOr;
+    ThenMin opThen;
+    AggMax opAgg;
+    CogDefuzz opMDefuzz;
 
-        fuzzy::FuzzyExpressionFactory f(&opNot, &opAnd, &opOr, &opThen, &opAgg, &opMDefuzz);
+    fuzzy::FuzzyExpressionFactory f(&opNot, &opAnd, &opOr, &opThen, &opAgg, &opMDefuzz);
 
-        IsTriangle poor(-5, 200, 500);
-        IsTriangle good(0, 100, 10000);
-        IsTriangle excellent(5000, 10000, 1500000);
+    IsTriangle poor(-5, 200, 500);
+    IsTriangle good(0, 100, 10000);
+    IsTriangle excellent(5000, 10000, 1500000);
 
-        IsTriangle cheap(0, 5, 10);
-        IsTriangle average(10, 15, 20);
-        IsTriangle generous(20, 25, 30);
+    IsTriangle cheap(0, 5, 10);
+    IsTriangle average(10, 15, 20);
+    IsTriangle generous(20, 25, 30);
 
-        Value power(0);
-        Value seats(0);
-        Value category(0);
-        Value consumption(0);
-        Value gearBox(0);
-        Value price(0);
-        Value carIndicator(0);
+    Value power(0);
+    Value seats(0);
+    Value category(0);
+    Value consumption(0);
+    Value gearBox(0);
+    Value price(0);
+    Value carIndicator(0);
 
-        core::Expression<T>* powerExpression =  f.newAgg(
-                                                            f.newAgg(
-                                                                f.newThen(
-                                                                    f.newIs(&poor, &power),
-                                                                    f.newIs(&cheap, &carIndicator)
-                                                                )
-                                                                ,
-                                                                f.newThen(
-                                                                    f.newIs(&good, &power),
-                                                                    f.newIs(&average, &carIndicator)
-                                                                )
-                                                            )
-                                                            ,
-                                                            f.newThen(
-                                                                f.newIs(&excellent, &power),
-                                                                f.newIs(&generous, &carIndicator)
-                                                            )
-                                                        );
-
-        core::Expression<T>* seatsExpression = f.newAgg(
-                                                    f.newAgg(
-                                                        f.newThen(
-                                                            f.newIs(&poor, &seats),
-                                                            f.newIs(&cheap, &carIndicator)
-                                                        ),
-                                                        f.newThen(
-                                                            f.newIs(&good, &seats),
-                                                            f.newIs(&average, &carIndicator)
-                                                        )
+    core::Expression<T>* powerExpression = f.newAgg(
+                                                f.newAgg(
+                                                    f.newThen(
+                                                        f.newIs(&poor, &power),
+                                                        f.newIs(&cheap, &carIndicator)
                                                     )
                                                     ,
                                                     f.newThen(
-                                                        f.newIs(&excellent, &seats),
-                                                        f.newIs(&generous, &carIndicator)
+                                                        f.newIs(&good, &power),
+                                                        f.newIs(&average, &carIndicator)
                                                     )
-                                                );
+                                                )
+                                                ,
+                                                f.newThen(
+                                                    f.newIs(&excellent, &power),
+                                                    f.newIs(&generous, &carIndicator)
+                                                )
+                                            );
 
-        core::Expression<T>* categoryExpression = f.newAgg(
-                                                    f.newAgg(
-                                                        f.newThen(
-                                                            f.newIs(&poor, &category),
-                                                            f.newIs(&cheap, &carIndicator)
-                                                        )
-                                                        ,
-                                                        f.newThen(
-                                                            f.newIs(&good, &category),
-                                                            f.newIs(&average, &carIndicator)
-                                                        )
+    core::Expression<T>* seatsExpression = f.newAgg(
+                                                f.newAgg(
+                                                    f.newThen(
+                                                        f.newIs(&poor, &seats),
+                                                        f.newIs(&cheap, &carIndicator)
                                                     ),
                                                     f.newThen(
-                                                        f.newIs(&excellent, &category),
-                                                        f.newIs(&generous, &carIndicator)
+                                                        f.newIs(&good, &seats),
+                                                        f.newIs(&average, &carIndicator)
                                                     )
-                                                );
+                                                )
+                                                ,
+                                                f.newThen(
+                                                    f.newIs(&excellent, &seats),
+                                                    f.newIs(&generous, &carIndicator)
+                                                )
+                                            );
 
-        core::Expression<T>* gearBoxExpression = f.newAgg(
-                                                        f.newAgg(
-                                                            f.newThen(
-                                                                f.newIs(&poor, &gearBox),
-                                                                f.newIs(&cheap, &carIndicator)
-                                                            ),
-                                                            f.newThen(
-                                                                f.newIs(&good, &gearBox),
-                                                                f.newIs(&average, &carIndicator)
-                                                            )
-                                                        )
-                                                        ,
-                                                        f.newThen(
-                                                            f.newIs(&excellent, &gearBox),
-                                                            f.newIs(&generous, &carIndicator)
-                                                        )
-                                                    );
+    core::Expression<T>* categoryExpression = f.newAgg(
+                                                f.newAgg(
+                                                    f.newThen(
+                                                        f.newIs(&poor, &category),
+                                                        f.newIs(&cheap, &carIndicator)
+                                                    )
+                                                    ,
+                                                    f.newThen(
+                                                        f.newIs(&good, &category),
+                                                        f.newIs(&average, &carIndicator)
+                                                    )
+                                                ),
+                                                f.newThen(
+                                                    f.newIs(&excellent, &category),
+                                                    f.newIs(&generous, &carIndicator)
+                                                )
+                                            );
 
-        core::Expression<T>* priceExpression = f.newAgg(
+    core::Expression<T>* gearBoxExpression = f.newAgg(
                                                     f.newAgg(
                                                         f.newThen(
-                                                            f.newIs(&poor, &price),
+                                                            f.newIs(&poor, &gearBox),
                                                             f.newIs(&cheap, &carIndicator)
                                                         ),
                                                         f.newThen(
-                                                            f.newIs(&good, &price),
+                                                            f.newIs(&good, &gearBox),
                                                             f.newIs(&average, &carIndicator)
                                                         )
                                                     )
                                                     ,
                                                     f.newThen(
-                                                        f.newIs(&excellent, &price),
+                                                        f.newIs(&excellent, &gearBox),
                                                         f.newIs(&generous, &carIndicator)
                                                     )
                                                 );
 
-        core::Expression<T>* r = f.newAgg(
-                                        f.newAgg(
-                                            f.newAgg(powerExpression,seatsExpression),
-                                            f.newAgg(categoryExpression,gearBoxExpression)
-                                        )
-                                        ,
-                                        priceExpression
-                                    );
+    core::Expression<T>* priceExpression = f.newAgg(
+                                                f.newAgg(
+                                                    f.newThen(
+                                                        f.newIs(&poor, &price),
+                                                        f.newIs(&cheap, &carIndicator)
+                                                    ),
+                                                    f.newThen(
+                                                        f.newIs(&good, &price),
+                                                        f.newIs(&average, &carIndicator)
+                                                    )
+                                                )
+                                                ,
+                                                f.newThen(
+                                                    f.newIs(&excellent, &price),
+                                                    f.newIs(&generous, &carIndicator)
+                                                )
+                                            );
 
-            core::Expression<T>* result = f.newMandanidaniDefuzz(&carIndicator, r, 0, 30, 1);
+    core::Expression<T>* r = f.newAgg(
+                                    f.newAgg(
+                                        f.newAgg(powerExpression,seatsExpression),
+                                        f.newAgg(categoryExpression,gearBoxExpression)
+                                    )
+                                    ,
+                                    priceExpression
+                                );
 
-            power.setValue(_power);
-            seats.setValue(_seats);
-            category.setValue(_category);
-            consumption.setValue(_consumption);
-            gearBox.setValue(_gearBox);
-            price.setValue(_price);
+    core::Expression<T>* result = f.newMandanidaniDefuzz(&carIndicator, r, 0, 30, 1);
 
-            return result->evaluate();
+    power.setValue(_power);
+    seats.setValue(_seats);
+    category.setValue(_category);
+    consumption.setValue(_consumption);
+    gearBox.setValue(_gearBox);
+    price.setValue(_price);
+
+    return result->evaluate();
 }
 
 template<typename T>

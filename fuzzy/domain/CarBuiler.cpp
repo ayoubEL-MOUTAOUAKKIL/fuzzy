@@ -13,7 +13,7 @@ namespace domain {
 		return *this;
 	}
 
-	CarBuilder& domain::CarBuilder::addPlaces(const int _places)
+    CarBuilder& domain::CarBuilder::setPlaces(const int _places)
 	{
 		car.setPlaces(_places);
 		return *this;
