@@ -24,16 +24,8 @@ int main(int argc, char** argv) {
     for (auto& line : lines) {
         carRepository->save(domain::CarFactory::createCar(line));
     }
-
-//    ExpressionGenerator<float> e;
-//    e.scan();
-    CarController<float>* carController = new CarController<float>();
-    std::vector<float> prices;
-    fuzzy::isTriangle<float> triangle(0,0,0);
-    for (auto& car : carRepository->getAllCars()) {
-        prices.push_back(car.getPrice());
-    }
-    carController->createIs(triangle, prices);
+    ExpressionGenerator<double> e;
+    e.scan(700);
     QApplication a(argc, argv);
     MainWindow w;
     QTextStream out(stdout);
