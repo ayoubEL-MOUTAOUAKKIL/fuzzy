@@ -277,44 +277,14 @@ domain::Car* ExpressionGenerator<T>::scan(T _v) const{
         car->isManualGearbox() ? (gearBox = 1) : (gearBox = 0);
         T price = car->getPrice();
         T value = ExpressionGenerator<T>::generate(power,seats,category,consumption,gearBox,price);
-        std::cout << value << " ,";
-
-
-
-        if(car==cars.begin()){
+        if(car==cars.begin() || (std::abs(value - _v) < std::abs(nearest - _v))){
             nearest = value;
-            fcar.setName(car->getName());
-            fcar.setPower(power);
-            fcar.setPlaces(seats);
-            fcar.setPrice(price);
-            fcar.setConsumption(consumption);
-            fcar.setCategory(car->getCategory());
-            fcar.setPictureName(car->getPictureName());
-            fcar.withManualGearbox(car->isManualGearbox());
-            association.emplace(&fcar,value);
-            nCar = &fcar;
+            nCar = &(*car);
         }
-        else{
-            if(std::abs(value - _v) < std::abs(nearest - _v)){
-                nearest = value;
-                fcar.setName(car->getName());
-                fcar.setPower(power);
-                fcar.setPlaces(seats);
-                fcar.setPrice(price);
-                fcar.setPictureName(car->getPictureName());
-                fcar.setConsumption(consumption);
-                fcar.setCategory(car->getCategory());
-                fcar.withManualGearbox(car->isManualGearbox());
-                association.emplace(&fcar,value);
-                nCar = &fcar;
-            }
-        }
-
-
     }
     std::cout << std::endl << nCar->getName();
     std::cout << std::endl << nCar->getConsumption();
-   // std::cout << std::endl << nCar->getCategory();
+    //std::cout << std::endl << nCar->getCategory();
     std::cout << std::endl << nCar->getPictureName();
     std::cout << std::endl << nCar->getPower();
     std::cout << std::endl << nCar->getPrice();
