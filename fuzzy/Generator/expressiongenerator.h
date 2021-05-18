@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <map>
 
+#include "../domain/CarBuilder.h"
 #include "../controller/CarController.h"
 #include "../core/expression.h"
 #include "../core/valueModel.h"
@@ -24,17 +25,17 @@ template<typename T>
 class ExpressionGenerator
 {
 public:
-    ExpressionGenerator(CarController&);
+    ExpressionGenerator(CarController<T>&);
     ~ExpressionGenerator() = default;
 
     T generate(T,T,T,T,T,T)const;
     domain::Car* scan(T) const;
 private:
-    CarController& controller;
+    CarController<T>& controller;
 };
 
 template<typename T>
-ExpressionGenerator<T>::ExpressionGenerator(CarController& _controller):
+ExpressionGenerator<T>::ExpressionGenerator(CarController<T>& _controller):
     controller(_controller)
 {}
 
@@ -64,12 +65,12 @@ T ExpressionGenerator<T>::generate(T _power, T _seats,T _category,T _consumption
 
 
         repository::CarRepository* carRepository = repository::InMemoryCarRepository::getInstance();
-        std::vector<fuzzy::is<T>*> v_power = controller.createIs(new fuzzy::isTriangle<T>(), carRepository->getAllPower());
-        std::vector<fuzzy::is<T>*> v_seats = controller.createIs(new fuzzy::isTriangle<T>(), carRepository->getAllSeats());
-        std::vector<fuzzy::is<T>*> v_category = controller.createIs(new fuzzy::isTriangle<T>(), carRepository->getAllCategory());
-        std::vector<fuzzy::is<T>*> v_consumption = controller.createIs(new fuzzy::isTriangle<T>(), carRepository->getAllConsumption());
-        std::vector<fuzzy::is<T>*> v_gear = controller.createIs(new fuzzy::isTrapezeRight<T>(), carRepository->getAllGear());
-        std::vector<fuzzy::is<T>*> v_price = controller.createIs(new fuzzy::isTriangle<T>(), carRepository->getAllPrice());
+        std::vector<fuzzy::is<T>*> v_power = controller.createIs<T>(fuzzy::isTriangle<T>(), carRepository->getAllPower());
+        std::vector<fuzzy::is<T>*> v_seats = controller.createIs<T>(fuzzy::isTriangle<T>(), carRepository->getAllSeats());
+        std::vector<fuzzy::is<T>*> v_category = controller.createIs<T>(fuzzy::isTriangle<T>(), carRepository->getAllCategory());
+        std::vector<fuzzy::is<T>*> v_consumption = controller.createIs<T>(fuzzy::isTriangle<T>(), carRepository->getAllConsumption());
+        std::vector<fuzzy::is<T>*> v_gear = controller.createIs<T>(fuzzy::isTrapezeRight<T>(), carRepository->getAllGear());
+        std::vector<fuzzy::is<T>*> v_price = controller.createIs<T>(fuzzy::isTriangle<T>(), carRepository->getAllPrice());
 
 
         //power
@@ -273,6 +274,7 @@ domain::Car* ExpressionGenerator<T>::scan(T _v) const{
     T nearest;
     domain::Car* nCar;
     domain::Car fcar;
+    domain::CarBuilder cbuilder;
 
     for (auto car = cars.begin(); car != cars.end(); ++car) {
         T power = car->getPower();
@@ -285,7 +287,14 @@ domain::Car* ExpressionGenerator<T>::scan(T _v) const{
         T value = ExpressionGenerator<T>::generate(power,seats,category,consumption,gearBox,price);
         if(car==cars.begin() || (std::abs(value - _v) < std::abs(nearest - _v))){
             nearest = value;
-            nCar = &(*car);
+            cbuilder.setName(car->getName());
+            cbuilder.setPower(car->getPower());
+            cbuilder.setConsumption(car->getConsumption());
+            cbuilder.setPrice(car->getPrice());
+            cbuilder.addPlaces(car->getPlaces());
+            cbuilder.setPictureName(car->getPictureName());
+            car->isManualGearbox() ? cbuilder.withManualGearbox(1) : cbuilder.withManualGearbox(0);
+            nCar = &cbuilder.build();
         }
     }
     std::cout << std::endl << nCar->getName();

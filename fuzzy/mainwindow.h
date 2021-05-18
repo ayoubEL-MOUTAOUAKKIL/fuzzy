@@ -1,6 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include "./domain/Car.h"
 #include <QMainWindow>
 #include <QLineEdit>
 #include<string>
@@ -18,7 +19,7 @@ public:
     Ui::MainWindow* getUi() const;
     void addComboBoxElements();
     void setValidators();
-    void setImage(QString,QString,QString,QString,QString,QString,QString,QString);
+    void setImage(domain::Car&);
 private slots:
     void on_RunButton_clicked();
 
