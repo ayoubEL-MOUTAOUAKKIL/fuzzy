@@ -67,8 +67,6 @@ void MainWindow::setValidators(){
 
 void MainWindow::setImage(domain::Car& car){
 
-
-
      QLabel* titlePower = ui->titlePower;
      QLabel* titleSeats = ui->titleSeats;
      QLabel* titleCategory = ui->titleCategory;
@@ -119,7 +117,6 @@ void MainWindow::on_RunButton_clicked()
     QString e = qLe->text();
     e.replace(",",".");
     double f = e.toFloat();
-    qDebug() << f ;
     //qDebug() << QCoreApplication::applicationDirPath(); c'est ici que se trouve l'éxécutable et où j'ai mit ma seule image
 
     QString buffer = ui->lineEdit_Price->text();

@@ -256,11 +256,8 @@ template<typename T>
 domain::Car* ExpressionGenerator<T>::scan(const T _v) const{
     repository::CarRepository* carRepository = repository::InMemoryCarRepository::getInstance();
     std::vector<domain::Car> cars = carRepository->getAllCars();
-    std::map<domain::Car*,T> association;
     T nearest;
     domain::Car* nCar;
-    domain::Car fcar;
-    domain::CarBuilder cbuilder;
 
     for (auto car = cars.begin(); car != cars.end(); ++car) {
         T power = car->getPower();
@@ -270,21 +267,10 @@ domain::Car* ExpressionGenerator<T>::scan(const T _v) const{
         T gearBox = car->isManualGearbox() ? T(1) : T(0);
         T price = car->getPrice();
         T value = ExpressionGenerator<T>::generate(power, seats, category, consumption, gearBox, price);
-        nearest = value;
-        if(car==cars.begin() || (std::abs(value - _v) < std::abs(nearest - _v))){
-            nCar = &(*car);
-        }
-        /*T power = car->getPower();
-        T seats = car->getPlaces();
-        T category = T(1);
-        T consumption = car->getConsumption();
-        T gearBox = car->isManualGearbox() ? T(1) : T(0);
-        T price = car->getPrice();
-        T value = ExpressionGenerator<T>::generate(power, seats, category, consumption, gearBox, price);
         if(car==cars.begin() || (std::abs(value - _v) < std::abs(nearest - _v))){
             nearest = value;
             nCar = &(*car);
-        }*/
+        }
     }
 
     return nCar;
