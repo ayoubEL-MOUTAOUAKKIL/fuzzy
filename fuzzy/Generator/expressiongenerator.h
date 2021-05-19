@@ -249,6 +249,7 @@ T ExpressionGenerator<T>::generate(T _power, T _seats,T _category,T _consumption
 
     core::Expression<T>* result = f.newMandanidaniDefuzz(&carIndicator, r, 0, 300, 1);
 
+    std::cout << std::endl << result->evaluate();
     return result->evaluate();
 }
 
@@ -269,7 +270,10 @@ domain::Car* ExpressionGenerator<T>::scan(const T _v) const{
         T value = ExpressionGenerator<T>::generate(power, seats, category, consumption, gearBox, price);
         if(car==cars.begin() || (std::abs(value - _v) < std::abs(nearest - _v))){
             nearest = value;
-            nCar = &(*car);
+            domain::CarBuilder* cBuilder = new domain::CarBuilder();
+            cBuilder->setName(car->getName()).setPower(car->getPower()).setPrice(car->getPrice()).setPlaces(car->getPlaces()).setPictureName(car->getPictureName()).setConsumption(car->getConsumption());
+            nCar = &cBuilder->build();
+            //nCar = &(*car);
         }
     }
 

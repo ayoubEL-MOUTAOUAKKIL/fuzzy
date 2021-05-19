@@ -86,6 +86,7 @@ void MainWindow::setImage(domain::Car& car){
      qDebug("avant number debug");
 
      labelCar->setText(QString::fromStdString(car.getName()));
+     qDebug("est-ce bugé");
      std::cout << std::endl << car.getPower();
      labelPower->setText(QString::number(car.getPower()));
      labelSeats->setText(QString::number(car.getPlaces()));
