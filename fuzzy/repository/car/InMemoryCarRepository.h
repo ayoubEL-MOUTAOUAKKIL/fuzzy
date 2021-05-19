@@ -24,7 +24,7 @@ namespace repository {
         virtual std::string getCategoryName(const domain::Category*) const;
     private:
         static InMemoryCarRepository* instance;
-        std::list<domain::Car> cars;
+        std::vector<domain::Car> cars;
         std::vector<std::pair<domain::Category*, std::string>> categoryName;
 	};
 }

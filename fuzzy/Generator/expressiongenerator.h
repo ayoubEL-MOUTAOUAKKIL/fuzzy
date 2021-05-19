@@ -277,10 +277,7 @@ std::vector<domain::Car*> ExpressionGenerator<T>::scan(const T _v) const{
                     .setPictureName(car->getPictureName())
                     .setCategory(car->getCategory())
                     .setConsumption(car->getConsumption());
-            nCars.push_back(&cBuilder->build());
-            nCars.push_back(carRepository->getAllCars().at(5));
-            nCars.push_back(carRepository->getAllCars().at(2));
-            nCars.push_back(carRepository->getAllCars().at(18));
+            nCars.push_back(&(cBuilder->build()));
         }
     }
 

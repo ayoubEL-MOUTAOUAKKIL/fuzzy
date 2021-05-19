@@ -37,11 +37,7 @@ namespace repository {
     }
 
     std::vector<domain::Car> InMemoryCarRepository::getAllCars() const {
-        std::vector<domain::Car> allCars;
-        for (auto car = cars.begin(); car != cars.end(); ++car){
-            allCars.push_back(*car);
-        }
-        return allCars;
+        return cars;
     }
 
     std::vector<double> InMemoryCarRepository::getAllPower() const {

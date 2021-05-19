@@ -135,6 +135,7 @@ void MainWindow::on_RunButton_clicked()
 
     double mean = generator->generate(carPower, carSeats, 4, carConsumption, gearValue, carPrice);
 
-    domain::Car* carz = generator->scan(mean);
-    setImage(*carz);
+    std::vector<domain::Car*> carz = generator->scan(mean);
+    for (auto& car : carz)
+        setImage(*car);
 }
