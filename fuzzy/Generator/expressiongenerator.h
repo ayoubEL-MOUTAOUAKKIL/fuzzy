@@ -278,6 +278,9 @@ std::vector<domain::Car*> ExpressionGenerator<T>::scan(const T _v) const{
                     .setCategory(car->getCategory())
                     .setConsumption(car->getConsumption());
             nCars.push_back(&cBuilder->build());
+            nCars.push_back(carRepository->getAllCars().at(5));
+            nCars.push_back(carRepository->getAllCars().at(2));
+            nCars.push_back(carRepository->getAllCars().at(18));
         }
     }
 
