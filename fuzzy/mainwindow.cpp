@@ -67,6 +67,8 @@ void MainWindow::setValidators(){
 
 void MainWindow::setImage(domain::Car& car){
 
+
+
      QLabel* titlePower = ui->titlePower;
      QLabel* titleSeats = ui->titleSeats;
      QLabel* titleCategory = ui->titleCategory;
@@ -111,42 +113,40 @@ void MainWindow::setImage(domain::Car& car){
 
 void MainWindow::on_RunButton_clicked()
 {
-    ExpressionGenerator<float>* generator = new ExpressionGenerator<float>();
+    ExpressionGenerator<double>* generator = new ExpressionGenerator<double>(new CarController<double>());
     //QLocale l(QLocale::French);
     QLineEdit* qLe = ui->lineEdit_Power;
     QString e = qLe->text();
     e.replace(",",".");
-    float f = e.toFloat();
+    double f = e.toFloat();
     qDebug() << f ;
     //qDebug() << QCoreApplication::applicationDirPath(); c'est ici que se trouve l'éxécutable et où j'ai mit ma seule image
 
     QString buffer = ui->lineEdit_Price->text();
     buffer.replace(",",".");
-    float carPrice = buffer.toFloat();
+    double carPrice = buffer.toDouble();
     buffer = ui->lineEdit_Power->text();
     buffer.replace(",",".");
-    float carPower = buffer.toFloat();
+    double carPower = buffer.toDouble();
     buffer = ui->lineEdit_Consumption->text();
     buffer.replace(",",".");
-    float carConsumption = buffer.toFloat();
+    double carConsumption = buffer.toDouble();
     int carSeats = ui->lineEdit_Seats->text().toInt();
     bool carGear = ui->comboBox_GearBox->currentIndex();
-    float gearValue;
-    carGear?gearValue=0:gearValue=1;
+    double gearValue = carGear ? 0 : 1;
 
-    float mean = generator->generate(carPower, carSeats, 10, carConsumption, gearValue, carPrice);
+    double mean = generator->generate(carPower, carSeats, 4, carConsumption, gearValue, carPrice);
 
-    domain::CarBuilder* builder = new domain::CarBuilder();
-    builder->setName("Audi A1");
-    builder->setPower(carPower);
-    builder->setPlaces(carSeats);
-    //builder->setCategory("citadine"); faut use la CategoryFactory j'ai la flemme atm
-    builder->setConsumption(carConsumption);
-    builder->setPrice(carPrice);
-    builder->setPictureName("a1.jpg");
+//    domain::CarBuilder* builder = new domain::CarBuilder();
+//    builder->setName("Audi A1");
+//    builder->setPower(carPower);
+//    builder->setPlaces(carSeats);
+//    //builder->setCategory("citadine"); faut use la CategoryFactory j'ai la flemme atm
+//    builder->setConsumption(carConsumption);
+//    builder->setPrice(carPrice);
+//    builder->setPictureName("a1.jpg");
 
     domain::Car* carz = generator->scan(mean);
-    std::cout << std::endl << carz->getPrice();
-
+    std::cout << carz->getPower() << std::endl;
     setImage(*carz);
 }

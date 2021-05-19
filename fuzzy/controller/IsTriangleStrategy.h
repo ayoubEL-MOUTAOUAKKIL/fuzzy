@@ -7,7 +7,7 @@ class IsTriangleStrategy: public IsStrategy<T>
 public:
     IsTriangleStrategy() = default;
     virtual ~IsTriangleStrategy() = default;
-    virtual std::vector<fuzzy::is<T>*>& generateIs(const T&,const T&) override;
+    virtual std::vector<fuzzy::is<T>*> generateIs(const T&,const T&) override;
 };
 
 template<typename T>
@@ -16,7 +16,7 @@ fuzzy::is<T>* create_triangle(const T min_range, const T max_range) {
 }
 
 template <typename T>
-std::vector<fuzzy::is<T>*>& IsTriangleStrategy<T>::generateIs(const T& min, const T& max){
+std::vector<fuzzy::is<T>*> IsTriangleStrategy<T>::generateIs(const T& min, const T& max){
     T first_tier = (max-min)/T(3);
     T second_tier = first_tier*T(2);
     T third_tier = first_tier*T(3);

@@ -6,7 +6,7 @@ template <typename T>
 
 class IsStrategy{
 public:
-    virtual std::vector<fuzzy::is<T>*>& generateIs(const T&,const T&)=0;
+    virtual std::vector<fuzzy::is<T>*> generateIs(const T&,const T&) = 0;
 };
 
 #endif // ISSTRATEGY_H

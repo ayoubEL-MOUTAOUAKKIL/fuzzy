@@ -9,7 +9,7 @@ class IsStrategyFactory{
 public:
     IsStrategyFactory() = default;
     virtual ~IsStrategyFactory()=default;
-    virtual IsStrategy<T>& generateIsStrategy(const fuzzy::is<T>&);
+    virtual IsStrategy<T>* generateIsStrategy(const fuzzy::is<T>&);
 };
 
 template<typename A, typename B>
@@ -18,12 +18,12 @@ bool is_same_class(const A& class1, const B& class2) {
 }
 
 template <typename T>
-IsStrategy<T>& IsStrategyFactory<T>::generateIsStrategy(const fuzzy::is<T>& is){
+IsStrategy<T>* IsStrategyFactory<T>::generateIsStrategy(const fuzzy::is<T>& is){
     if (is_same_class(fuzzy::isTriangle<T>(), is)){
-        return IsTriangleStrategy<T>();
+        return new IsTriangleStrategy<T>();
     }
     if (is_same_class(fuzzy::isTrapezeRight<T>(), is)){
-        return IsTrapezeRightStrategy<T>();
+        return new IsTrapezeRightStrategy<T>();
     }
     throw std::string("Not implemented type.");
 }

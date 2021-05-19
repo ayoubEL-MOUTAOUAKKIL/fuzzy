@@ -18,20 +18,21 @@
 #include <iostream>
 
 int main(int argc, char** argv) {
-    repository::CarRepository* carRepository = repository::InMemoryCarRepository::getInstance();
-    repository::CSVParser parser("../fuzzy/datas/cars.csv", ',');
-    std::vector<std::vector<std::string>> lines = parser.getLines();
-    for (auto& line : lines) {
-        carRepository->save(domain::CarFactory::createCar(line));
-    }
-    ExpressionGenerator<double> e;
-    e.scan(700);
     QApplication a(argc, argv);
     MainWindow w;
     QTextStream out(stdout);
     w.addComboBoxElements();
     w.setValidators();
     w.show();
+
+    repository::CarRepository* carRepository = repository::InMemoryCarRepository::getInstance();
+    repository::CSVParser parser("../fuzzy/datas/cars.csv", ',');
+    std::vector<std::vector<std::string>> lines = parser.getLines();
+    for (auto& line : lines) {
+        carRepository->save(domain::CarFactory::createCar(line));
+    }
+//    ExpressionGenerator<double>* e = new ExpressionGenerator<double>(new CarController<double>());
+//    e->scan(700);
     return a.exec();
 //    return 0;
 }

@@ -14,6 +14,12 @@ namespace repository {
         static InMemoryCarRepository* getInstance();
         virtual void save(const domain::Car&);
         virtual std::vector<domain::Car> getAllCars() const;
+        virtual std::vector<double> getAllPower() const;
+        virtual std::vector<double> getAllSeats() const;
+        virtual std::vector<double> getAllCategory() const;
+        virtual std::vector<double> getAllConsumption() const;
+        virtual std::vector<double> getAllPrices() const;
+        virtual std::vector<double> getAllGear() const;
     private:
         static InMemoryCarRepository* instance;
         InMemoryCarRepository() = default;

@@ -4,7 +4,7 @@
 namespace domain {
 	class Category{
     public:
-        virtual int getType() const { return -1; };
+        virtual int getType() const { return 50; };
 	};
 }
 

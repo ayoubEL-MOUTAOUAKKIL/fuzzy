@@ -5,13 +5,14 @@
 #include <memory>
 #include "IsStrategy.h"
 #include "IsStrategyFactory.h"
+
 template<typename T>
 class CarController
 {
 public:
     CarController();
     virtual ~CarController() = default;
-    virtual std::vector<fuzzy::is<T>*>& createIs(const fuzzy::is<T>&, const std::vector<T>&);
+    virtual std::vector<fuzzy::is<T>*> createIs(const fuzzy::is<T>&, const std::vector<T>&);
     virtual void init_datas(const std::vector<T>&);
     virtual void set_min();
     virtual void set_max();
@@ -69,11 +70,11 @@ void CarController<T>::init_datas(const std::vector<T>& d) {
 }
 
 template<typename T>
-std::vector<fuzzy::is<T>*>& CarController<T>::createIs(const fuzzy::is<T>& is, const std::vector<T>& car_datas){
+std::vector<fuzzy::is<T>*> CarController<T>::createIs(const fuzzy::is<T>& is, const std::vector<T>& car_datas){
     init_datas(car_datas);
     std::vector<fuzzy::is<T>*> t;
-    IsStrategy<T> strategy = IsStrategyFactory<T>::generateIsStrategy(is);
-    return strategy.generateIs(min,max);
+    IsStrategy<T>* strategy = IsStrategyFactory<T>().generateIsStrategy(is);
+    return strategy->generateIs(min,max);
 }
 
 #endif // CARCONTROLLER_H
