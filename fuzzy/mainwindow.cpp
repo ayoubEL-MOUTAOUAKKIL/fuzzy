@@ -113,6 +113,8 @@ void MainWindow::setImage(domain::Car& car){
 
 void MainWindow::on_RunButton_clicked()
 {
+    ui->comboBox_CarChoice->clear();
+
     ExpressionGenerator<double>* generator = new ExpressionGenerator<double>(new CarController<double>());
     //QLocale l(QLocale::French);
     QLineEdit* qLe = ui->lineEdit_Power;
@@ -136,6 +138,15 @@ void MainWindow::on_RunButton_clicked()
     double mean = generator->generate(carPower, carSeats, 4, carConsumption, gearValue, carPrice);
 
     std::vector<domain::Car*> carz = generator->scan(mean);
-    for (auto& car : carz)
-        setImage(*car);
+
+    qDebug("filling comboBox");
+
+    int i = 0;
+    for(auto it=carz.begin(); it!=carz.end(); ++it) {
+        qDebug("fill");
+        ui->comboBox_CarChoice->addItem(QString::fromStdString((*it)->getName()));
+        i++;
+    }
+
+    //setImage((*carz.begin()));
 }

@@ -257,7 +257,8 @@ std::vector<domain::Car*> ExpressionGenerator<T>::scan(const T _v) const{
     repository::CarRepository* carRepository = repository::InMemoryCarRepository::getInstance();
     std::vector<domain::Car> cars = carRepository->getAllCars();
     T nearest;
-    std::vector<domain::Car*> nCars;
+    domain::Car* nCars;
+    std::vector<domain::Car*> vCars;
 
     for (auto car = cars.begin(); car != cars.end(); ++car) {
         T power = car->getPower();
@@ -277,11 +278,12 @@ std::vector<domain::Car*> ExpressionGenerator<T>::scan(const T _v) const{
                     .setPictureName(car->getPictureName())
                     .setCategory(car->getCategory())
                     .setConsumption(car->getConsumption());
-            nCars.push_back(&(cBuilder->build()));
-        }
+            nCars = &cBuilder->build();
+        }   
     }
+    vCars.push_back(nCars);
 
-    return nCars;
+    return vCars;
 }
 
 #endif // EXPRESSIONGENERATOR_H
