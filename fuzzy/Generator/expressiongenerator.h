@@ -247,9 +247,8 @@ T ExpressionGenerator<T>::generate(T _power, T _seats,T _category,T _consumption
 
                             );
 
-    core::Expression<T>* result = f.newMandanidaniDefuzz(&carIndicator, r, 0, 300, 1);
+    core::Expression<T>* result = f.newMandanidaniDefuzz(&carIndicator, r, 0, 3330, 1);
 
-    std::cout << std::endl << result->evaluate();
     return result->evaluate();
 }
 

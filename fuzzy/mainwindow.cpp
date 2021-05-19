@@ -67,7 +67,7 @@ void MainWindow::setValidators(){
 
 void MainWindow::setImage(domain::Car& car){
 
-    qDebug("Setting images");
+
      QLabel* titlePower = ui->titlePower;
      QLabel* titleSeats = ui->titleSeats;
      QLabel* titleCategory = ui->titleCategory;
@@ -83,11 +83,10 @@ void MainWindow::setImage(domain::Car& car){
      QLabel* labelGearbox = ui->carGearBox;
      QLabel* labelPrice = ui->carPrice;
 
-     qDebug("avant number debug");
+
 
      labelCar->setText(QString::fromStdString(car.getName()));
-     qDebug("est-ce bugé");
-     std::cout << std::endl << car.getPower();
+
      labelPower->setText(QString::number(car.getPower()));
      labelSeats->setText(QString::number(car.getPlaces()));
      labelCategory->setText("bidon");
@@ -100,7 +99,7 @@ void MainWindow::setImage(domain::Car& car){
          labelGearbox->setText("automatic");
      }
 
-     qDebug("Apres numbere");
+
 
      titlePower->setText("Power :");
      titleSeats->setText("Seats :");
@@ -118,7 +117,6 @@ void MainWindow::setImage(domain::Car& car){
 
 void MainWindow::on_RunButton_clicked()
 {
-    qDebug("salut1");
     ExpressionGenerator<double>* generator = new ExpressionGenerator<double>(new CarController<double>());
     //QLocale l(QLocale::French);
     QLineEdit* qLe = ui->lineEdit_Power;
@@ -127,7 +125,6 @@ void MainWindow::on_RunButton_clicked()
     double f = e.toFloat();
     //qDebug() << QCoreApplication::applicationDirPath(); c'est ici que se trouve l'éxécutable et où j'ai mit ma seule image
 
-    qDebug("salut2");
 
     QString buffer = ui->lineEdit_Price->text();
     buffer.replace(",",".");
@@ -142,7 +139,6 @@ void MainWindow::on_RunButton_clicked()
     bool carGear = ui->comboBox_GearBox->currentIndex();
     double gearValue = carGear ? 0 : 1;
 
-    qDebug("salut pregen");
 
     double mean = generator->generate(carPower, carSeats, 4, carConsumption, gearValue, carPrice);
 
@@ -156,7 +152,5 @@ void MainWindow::on_RunButton_clicked()
 //    builder->setPictureName("a1.jpg");
 
     domain::Car* carz = generator->scan(mean);
-    qDebug("scanned");
     setImage(*carz);
-    qDebug("auRevoir final");
 }
