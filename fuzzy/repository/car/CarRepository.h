@@ -18,6 +18,7 @@ namespace repository {
         virtual std::vector<double> getAllConsumption() const = 0;
         virtual std::vector<double> getAllPrices() const = 0;
         virtual std::vector<double> getAllGear() const = 0;
+        virtual std::string getCategoryName(const domain::Category*) const = 0;
 	};
 }
 #endif // !CARREPOSITORY_H

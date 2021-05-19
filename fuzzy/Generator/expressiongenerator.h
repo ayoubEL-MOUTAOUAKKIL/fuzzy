@@ -29,7 +29,7 @@ public:
     ~ExpressionGenerator() = default;
 
     T generate(T,T,T,T,T,T)const;
-    domain::Car* scan(const T) const;
+    std::vector<domain::Car*> scan(const T) const;
 private:
     CarController<T>* controller;
 };
@@ -253,16 +253,16 @@ T ExpressionGenerator<T>::generate(T _power, T _seats,T _category,T _consumption
 }
 
 template<typename T>
-domain::Car* ExpressionGenerator<T>::scan(const T _v) const{
+std::vector<domain::Car*> ExpressionGenerator<T>::scan(const T _v) const{
     repository::CarRepository* carRepository = repository::InMemoryCarRepository::getInstance();
     std::vector<domain::Car> cars = carRepository->getAllCars();
     T nearest;
-    domain::Car* nCar;
+    std::vector<domain::Car*> nCars;
 
     for (auto car = cars.begin(); car != cars.end(); ++car) {
         T power = car->getPower();
         T seats = car->getPlaces();
-        T category = T(1);
+        T category = car->getCategory()->getType();
         T consumption = car->getConsumption();
         T gearBox = car->isManualGearbox() ? T(1) : T(0);
         T price = car->getPrice();
@@ -270,15 +270,18 @@ domain::Car* ExpressionGenerator<T>::scan(const T _v) const{
         if(car==cars.begin() || (std::abs(value - _v) < std::abs(nearest - _v))){
             nearest = value;
             domain::CarBuilder* cBuilder = new domain::CarBuilder();
-            cBuilder->setName(car->getName()).setPower(car->getPower()).setPrice(car->getPrice()).setPlaces(car->getPlaces()).setPictureName(car->getPictureName()).setConsumption(car->getConsumption());
-            nCar = &cBuilder->build();
-            //nCar = &(*car);
+            cBuilder->setName(car->getName())
+                    .setPower(car->getPower())
+                    .setPrice(car->getPrice())
+                    .setPlaces(car->getPlaces())
+                    .setPictureName(car->getPictureName())
+                    .setCategory(car->getCategory())
+                    .setConsumption(car->getConsumption());
+            nCars.push_back(&cBuilder->build());
         }
     }
 
-    return nCar;
+    return nCars;
 }
-
-
 
 #endif // EXPRESSIONGENERATOR_H

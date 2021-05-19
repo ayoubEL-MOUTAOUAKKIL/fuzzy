@@ -5,7 +5,7 @@
 
 namespace domain {
     class Utilitary : public Category{
-        virtual int getType() const { return 5; };
+        virtual double getType() const { return 5; };
     };
 }
 

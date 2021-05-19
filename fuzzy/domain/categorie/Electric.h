@@ -4,7 +4,7 @@
 
 namespace domain {
     class Electric: public Category{
-        virtual int getType() const { return 2; };
+        virtual double getType() const { return 2; };
     };
 }
 

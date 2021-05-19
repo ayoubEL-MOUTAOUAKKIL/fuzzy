@@ -5,7 +5,7 @@
 
 namespace domain {
     class City : public Category{
-        virtual int getType() const { return 1; };
+        virtual double getType() const { return 1; };
     };
 }
 

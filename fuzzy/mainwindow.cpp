@@ -67,7 +67,6 @@ void MainWindow::setValidators(){
 
 void MainWindow::setImage(domain::Car& car){
 
-
      QLabel* titlePower = ui->titlePower;
      QLabel* titleSeats = ui->titleSeats;
      QLabel* titleCategory = ui->titleCategory;
@@ -83,13 +82,13 @@ void MainWindow::setImage(domain::Car& car){
      QLabel* labelGearbox = ui->carGearBox;
      QLabel* labelPrice = ui->carPrice;
 
-
+     repository::CarRepository* carRepository = repository::InMemoryCarRepository::getInstance();
 
      labelCar->setText(QString::fromStdString(car.getName()));
 
      labelPower->setText(QString::number(car.getPower()));
      labelSeats->setText(QString::number(car.getPlaces()));
-     labelCategory->setText("bidon");
+     labelCategory->setText(QString::fromStdString(carRepository->getCategoryName(car.getCategory())));
      labelConsumption->setText(QString::number(car.getConsumption()));
      labelPrice->setText(QString::number(car.getPrice()));
      if (car.isManualGearbox()) {
@@ -99,8 +98,6 @@ void MainWindow::setImage(domain::Car& car){
          labelGearbox->setText("automatic");
      }
 
-
-
      titlePower->setText("Power :");
      titleSeats->setText("Seats :");
      titleCategory->setText("Category :");
@@ -109,7 +106,6 @@ void MainWindow::setImage(domain::Car& car){
      titlePrice->setText("Price :");
 
      QPixmap picture(QString::fromStdString("../fuzzy/datas/pictures/"+car.getPictureName()));
-     //QPixmap picture(QString::fromStdString("../fuzzy/datas/pictures/a1.jpg"));
      int w = ui->label_pic->width();
      int h = ui->label_pic->height();
      ui->label_pic->setPixmap(picture.scaled(w,h,Qt::KeepAspectRatio));
@@ -123,8 +119,6 @@ void MainWindow::on_RunButton_clicked()
     QString e = qLe->text();
     e.replace(",",".");
     double f = e.toFloat();
-    //qDebug() << QCoreApplication::applicationDirPath(); c'est ici que se trouve l'éxécutable et où j'ai mit ma seule image
-
 
     QString buffer = ui->lineEdit_Price->text();
     buffer.replace(",",".");
@@ -139,17 +133,7 @@ void MainWindow::on_RunButton_clicked()
     bool carGear = ui->comboBox_GearBox->currentIndex();
     double gearValue = carGear ? 0 : 1;
 
-
     double mean = generator->generate(carPower, carSeats, 4, carConsumption, gearValue, carPrice);
-
-//    domain::CarBuilder* builder = new domain::CarBuilder();
-//    builder->setName("Audi A1");
-//    builder->setPower(carPower);
-//    builder->setPlaces(carSeats);
-//    //builder->setCategory("citadine"); faut use la CategoryFactory j'ai la flemme atm
-//    builder->setConsumption(carConsumption);
-//    builder->setPrice(carPrice);
-//    builder->setPictureName("a1.jpg");
 
     domain::Car* carz = generator->scan(mean);
     setImage(*carz);

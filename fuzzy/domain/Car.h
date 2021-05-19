@@ -13,7 +13,7 @@ namespace domain {
             virtual std::string getName() const { return name; }
             virtual double getPower() const { return power; }
             virtual int getPlaces() const { return places; }
-            virtual Category& getCategory() const { return category; }
+            virtual Category* getCategory() const { return category; }
             virtual double getPrice() const { return price; }
             virtual bool isManualGearbox() const { return manual_gearbox; }
             virtual double getConsumption() const { return consumption; }
@@ -22,7 +22,7 @@ namespace domain {
             virtual void setName(const std::string _name) { name = _name; }
             virtual void setPower(const double _power) { power = _power; }
             virtual void setPlaces(const int _places) { places = _places; }
-            virtual void setCategory(const Category& _category) { category = _category; }
+            virtual void setCategory(Category* _category) { category = _category; }
             virtual void setPrice(const double _price) { price = _price; }
             virtual void withManualGearbox(const bool isManualGearbox) { manual_gearbox = isManualGearbox; }
             virtual void setConsumption(const double _consumption) { consumption = _consumption; }
@@ -32,7 +32,7 @@ namespace domain {
             std::string name;
             double power;
             int places;
-            Category& category;
+            Category* category;
             double price;
             bool manual_gearbox;
             double consumption;

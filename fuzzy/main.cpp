@@ -31,10 +31,7 @@ int main(int argc, char** argv) {
     for (auto& line : lines) {
         carRepository->save(domain::CarFactory::createCar(line));
     }
-    std::cout << carRepository->getAllCars().size();
+    tests();
 
-//    ExpressionGenerator<double>* e = new ExpressionGenerator<double>(new CarController<double>());
-//    e->scan(700);
     return a.exec();
-//    return 0;
 }

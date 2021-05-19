@@ -8,7 +8,7 @@ namespace domain {
 	{
 	public:
 		CategoryFactory() = default;
-		Category createCategory(const std::string _categoryType);
+        Category* createCategory(const std::string _categoryType);
 		virtual ~CategoryFactory() = default;
 	};
 }

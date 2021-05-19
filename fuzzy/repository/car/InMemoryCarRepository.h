@@ -8,6 +8,7 @@ namespace repository {
 	class InMemoryCarRepository : public repository::CarRepository
     {
 	public:
+        InMemoryCarRepository();
         ~InMemoryCarRepository();
         InMemoryCarRepository(InMemoryCarRepository&) = delete;
         void operator=(const InMemoryCarRepository&) = delete;
@@ -20,10 +21,11 @@ namespace repository {
         virtual std::vector<double> getAllConsumption() const;
         virtual std::vector<double> getAllPrices() const;
         virtual std::vector<double> getAllGear() const;
+        virtual std::string getCategoryName(const domain::Category*) const;
     private:
         static InMemoryCarRepository* instance;
-        InMemoryCarRepository() = default;
         std::list<domain::Car> cars;
+        std::vector<std::pair<domain::Category*, std::string>> categoryName;
 	};
 }
 

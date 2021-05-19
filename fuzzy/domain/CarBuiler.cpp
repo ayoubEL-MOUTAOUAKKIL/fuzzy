@@ -19,9 +19,9 @@ namespace domain {
 		return *this;
 	}
 
-	CarBuilder& domain::CarBuilder::setCategory(const domain::Category& _category)
+    CarBuilder& domain::CarBuilder::setCategory(domain::Category* _category)
 	{
-		car.setCategory(_category);
+        car.setCategory(_category);
 		return *this;
 	}
 

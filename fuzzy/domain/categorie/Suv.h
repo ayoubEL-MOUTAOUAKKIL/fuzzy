@@ -5,7 +5,7 @@
 
 namespace domain {
     class Suv : public Category{
-        virtual int getType() const { return 4; };
+        virtual double getType() const { return 4; };
     };
 }
 

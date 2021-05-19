@@ -14,7 +14,7 @@ namespace domain {
 		CarBuilder& setName(const std::string);
 		CarBuilder& setPower(const float);
         CarBuilder& setPlaces(const int);
-		CarBuilder& setCategory(const domain::Category&);
+        CarBuilder& setCategory(domain::Category*);
 		CarBuilder& setPrice(const float);
 		CarBuilder& withManualGearbox(const bool);
 		CarBuilder& setConsumption(const float);

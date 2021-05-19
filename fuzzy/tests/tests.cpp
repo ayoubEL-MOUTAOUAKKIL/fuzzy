@@ -435,5 +435,5 @@ void tests()
 	testIsGaussian();
 	testIsBell();
 	testSugeno();
-	testTips();
+//	testTips();
 }
