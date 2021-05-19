@@ -5,6 +5,8 @@
 #include <QMainWindow>
 #include <QLineEdit>
 #include<string>
+#include <vector>
+#include "./domain/Car.h"
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -22,6 +24,7 @@ public:
     void setImage(domain::Car&);
 private slots:
     void on_RunButton_clicked();
+    void on_Car_Changed();
 
 private:
     Ui::MainWindow *ui;
@@ -29,5 +32,6 @@ private:
     QLineEdit* consumptionField;
     QLineEdit* seatsField;
     QLineEdit* priceField;
+    std::vector<domain::Car*> vCars;
 };
 #endif // MAINWINDOW_H

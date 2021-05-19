@@ -24,6 +24,8 @@ MainWindow::MainWindow(QWidget *parent)
     consumptionField = ui->lineEdit_Consumption;
     seatsField = ui->lineEdit_Seats;
     priceField = ui->lineEdit_Price;
+    QComboBox* carBox = ui->comboBox_CarChoice;
+    connect(carBox, &QComboBox::currentIndexChanged, this, &MainWindow::on_Car_Changed);
 }
 
 MainWindow::~MainWindow()
@@ -137,16 +139,28 @@ void MainWindow::on_RunButton_clicked()
 
     double mean = generator->generate(carPower, carSeats, 4, carConsumption, gearValue, carPrice);
 
-    std::vector<domain::Car*> carz = generator->scan(mean);
+    //std::vector<domain::Car*> carz = generator->scan(mean);
+    vCars = generator->scan(mean);
 
     qDebug("filling comboBox");
 
     int i = 0;
-    for(auto it=carz.begin(); it!=carz.end(); ++it) {
+    for(auto it=vCars.begin(); it!=vCars.end(); ++it) {
         qDebug("fill");
         ui->comboBox_CarChoice->addItem(QString::fromStdString((*it)->getName()));
         i++;
     }
+}
+void MainWindow::on_Car_Changed() {
+    qDebug("box changed");
+    int index = ui->comboBox_CarChoice->currentIndex();
+    int i = 0;
 
-    //setImage((*carz.begin()));
+    auto it = vCars.begin();
+    while(i<index) {
+        it++;
+        i++;
+    }
+
+    setImage(*(*it));
 }
