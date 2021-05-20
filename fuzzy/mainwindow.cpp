@@ -41,9 +41,9 @@ void MainWindow::addComboBoxElements(){
 
     QComboBox* categorySelector = ui->comboBox_Category;
     categorySelector->addItem("city-run");
-    categorySelector->addItem("SUV");
     categorySelector->addItem("electric");
     categorySelector->addItem("sport");
+    categorySelector->addItem("SUV");
 
     QComboBox* gearboxSelector = ui->comboBox_GearBox;
     gearboxSelector->addItem("manual");
@@ -135,9 +135,11 @@ void MainWindow::on_RunButton_clicked()
     double carConsumption = buffer.toDouble();
     int carSeats = ui->lineEdit_Seats->text().toInt();
     bool carGear = ui->comboBox_GearBox->currentIndex();
-    double gearValue = carGear ? 0 : 1;
+    double gearValue = carGear ? 1 : 0;
+    double carCat = ui->comboBox_Category->currentIndex() + 1;
 
-    double mean = generator->generate(carPower, carSeats, 4, carConsumption, gearValue, carPrice);
+    double mean = generator->generate(carPower, carSeats, carCat, carConsumption, gearValue, carPrice);
+    std::cout << std::endl << mean << std::endl;
 
     //std::vector<domain::Car*> carz = generator->scan(mean);
     vCars = generator->scan(mean);

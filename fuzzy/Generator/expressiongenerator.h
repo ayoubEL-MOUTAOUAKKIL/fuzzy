@@ -142,7 +142,7 @@ T ExpressionGenerator<T>::generate(T _power, T _seats,T _category,T _consumption
                                                         f.newAgg(
                                                             f.newThen(
                                                                 f.newIs(cWeak, &consumption),
-                                                                f.newIs(&lowConsumptionCar, &carIndicator)
+                                                                f.newIs(&highConsumptionCar, &carIndicator)
                                                             )
                                                             ,
                                                             f.newThen(
@@ -153,7 +153,7 @@ T ExpressionGenerator<T>::generate(T _power, T _seats,T _category,T _consumption
                                                         ,
                                                         f.newThen(
                                                             f.newIs(cStrong, &consumption),
-                                                            f.newIs(&highConsumptionCar, &carIndicator)
+                                                            f.newIs(&lowConsumptionCar, &carIndicator)
                                                         )
                                                     );
 
@@ -257,7 +257,9 @@ std::vector<domain::Car*> ExpressionGenerator<T>::scan(const T _v) const{
     repository::CarRepository* carRepository = repository::InMemoryCarRepository::getInstance();
     std::vector<domain::Car> cars = carRepository->getAllCars();
     T nearest;
-    domain::Car* nCars;
+    //domain::Car* nCars;
+    domain::Car* sCars[3];
+    T sValues[3] = {100000,100000,100000};
     std::vector<domain::Car*> vCars;
 
     for (auto car = cars.begin(); car != cars.end(); ++car) {
@@ -268,7 +270,8 @@ std::vector<domain::Car*> ExpressionGenerator<T>::scan(const T _v) const{
         T gearBox = car->isManualGearbox() ? T(1) : T(0);
         T price = car->getPrice();
         T value = ExpressionGenerator<T>::generate(power, seats, category, consumption, gearBox, price);
-        if(car==cars.begin() || (std::abs(value - _v) < std::abs(nearest - _v))){
+        if(std::abs(value - _v) < std::abs(sValues[0] - _v)) {
+        /*if(car==cars.begin() || (std::abs(value - _v) < std::abs(nearest - _v))){*/
             nearest = value;
             domain::CarBuilder* cBuilder = new domain::CarBuilder();
             cBuilder->setName(car->getName())
@@ -278,12 +281,51 @@ std::vector<domain::Car*> ExpressionGenerator<T>::scan(const T _v) const{
                     .setPictureName(car->getPictureName())
                     .setCategory(car->getCategory())
                     .setConsumption(car->getConsumption());
-            nCars = &cBuilder->build();
-            vCars.push_back(nCars);
-        }   
+
+            sCars[2] = sCars[1];
+            sCars[1] = sCars[0];
+            sCars[0] = &cBuilder->build();
+
+            sValues[2] = sValues[1];
+            sValues[1] = sValues[0];
+            sValues[0] = value;
+        }
+        else if(std::abs(value - _v) < std::abs(sValues[1] - _v)) {
+            nearest = value;
+            domain::CarBuilder* cBuilder = new domain::CarBuilder();
+            cBuilder->setName(car->getName())
+                    .setPower(car->getPower())
+                    .setPrice(car->getPrice())
+                    .setPlaces(car->getPlaces())
+                    .setPictureName(car->getPictureName())
+                    .setCategory(car->getCategory())
+                    .setConsumption(car->getConsumption());
+
+            sCars[2] = sCars[1];
+            sCars[1] = &cBuilder->build();
+
+            sValues[2] = sValues[1];
+            sValues[1] = value;
+        }
+        else if(std::abs(value - _v) < std::abs(sValues[2] - _v)) {
+            nearest = value;
+            domain::CarBuilder* cBuilder = new domain::CarBuilder();
+            cBuilder->setName(car->getName())
+                    .setPower(car->getPower())
+                    .setPrice(car->getPrice())
+                    .setPlaces(car->getPlaces())
+                    .setPictureName(car->getPictureName())
+                    .setCategory(car->getCategory())
+                    .setConsumption(car->getConsumption());
+            sCars[2] = &cBuilder->build();
+            sValues[2] = value;
+        }
     }
     //vCars.push_back(nCars);
 
+    for(domain::Car* c : sCars) {
+        vCars.push_back(c);
+    }
     return vCars;
 }
 
